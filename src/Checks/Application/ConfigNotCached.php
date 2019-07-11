@@ -40,6 +40,6 @@ class ConfigNotCached implements Check
      */
     public function message(): string
     {
-        return 'The configuration files should not be cached during development. Call "php artisan config:clear" to clear the configuration cache.';
+        return "The configuration files should not be cached during development.\nCall 'php artisan config:clear' to clear the configuration cache.";
     }
 }

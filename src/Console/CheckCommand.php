@@ -26,25 +26,25 @@ class CheckCommand extends Command
         $sm = app()->make(ServerMonitor::class);
         $results = $sm->runChecks();
 
-        $count = 0;
+        $data = [];
         foreach ($results as $type => $checks) {
-            $this->comment(strtoupper($type));
-
             foreach ($checks as $check) {
                 $name = $check['name'];
                 $message = $check['message'];
 
-                $count = str_pad(++$count, 2, '0', STR_PAD_LEFT);
-
                 if ($check['result']) {
-                    $text = "$count: <fg=green>PASS --> $name</fg=green>";
+                    $message = '';
+                    $result = '<fg=green>PASSED</fg=green>';
                 } else {
-                    $text = "$count: <fg=red>FAIL --> $name ($message)</fg=red>";
+                    $result = '<fg=red>FAILED</fg=red>';
                 }
 
-                $this->line($text);
+                $data[] = [$type, $name, $result, $message];
             }
         }
 
+        $headers = ['Check Type', 'Check Name', 'Result', 'Error'];
+
+        $this->table($headers, $data);
     }
 }

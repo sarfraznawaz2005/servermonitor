@@ -40,6 +40,6 @@ class RoutesAreCached implements Check
      */
     public function message(): string
     {
-        return 'The routes should be cached in production for better performance. Call "php artisan route:cache" to create the route cache.';
+        return "The routes should be cached in production for performance.\nCall 'php artisan route:cache' to create the route cache.";
     }
 }

@@ -52,6 +52,6 @@ class StorageDirectoryIsLinked implements Check
      */
     public function message(): string
     {
-        return 'The storage directory is not linked. Use "php artisan storage:link" to create a symbolic link.';
+        return "The storage directory is not linked.\nUse 'php artisan storage:link' to create a symbolic link.";
     }
 }

@@ -40,6 +40,6 @@ class ConfigCached implements Check
      */
     public function message(): string
     {
-        return 'The configuration should be cached in production for better performance. Call "php artisan config:cache" to create the configuration cache.';
+        return "The configuration should be cached in production for better performance.\nCall 'php artisan config:cache' to create the configuration cache.";
     }
 }

@@ -63,7 +63,7 @@ class CorrectPhpVersionInstalled implements Check
         $required = $this->requiredVersion;
         $used = PHP_VERSION;
 
-        return "Required PHP version is not installed. Required: $required, used: $used";
+        return "Required PHP version is not installed.\nRequired: $required, used: $used";
     }
 
     /**

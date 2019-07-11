@@ -40,6 +40,6 @@ class RoutesAreNotCached implements Check
      */
     public function message(): string
     {
-        return 'The routes should not be cached during development. Call "php artisan route:clear" to clear the route cache.';
+        return "The routes should not be cached during development.\nCall 'php artisan route:clear' to clear the route cache.";
     }
 }

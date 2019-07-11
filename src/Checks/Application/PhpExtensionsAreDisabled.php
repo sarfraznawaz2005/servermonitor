@@ -23,7 +23,7 @@ class PhpExtensionsAreDisabled implements Check
      */
     public function name(): string
     {
-        return 'Unwanted PHP extensions are disabled';
+        return 'Unwanted PHP extensions disabled';
     }
 
     /**
@@ -50,6 +50,6 @@ class PhpExtensionsAreDisabled implements Check
      */
     public function message(): string
     {
-        return 'The following extensions are not disabled:' . $this->extensions->implode(PHP_EOL);
+        return "The following extensions are not disabled:\n" . $this->extensions->implode(PHP_EOL);
     }
 }

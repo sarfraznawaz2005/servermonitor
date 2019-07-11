@@ -19,7 +19,7 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function name(): string
     {
-        return 'Composer dependencies are up to date';
+        return 'Composer dependencies up to date';
     }
 
     /**
@@ -46,6 +46,6 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function message(): string
     {
-        return 'The composer dependencies are not up to date. Call "composer install" to update them.';
+        return "The composer dependencies are not up to date.\nCall 'composer install' to update them.";
     }
 }

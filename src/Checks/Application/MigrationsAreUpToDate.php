@@ -53,7 +53,7 @@ class MigrationsAreUpToDate implements Check
     public function message(): string
     {
         if ($this->error !== null) {
-            return 'Unable to check for migrations: ' . $this->error;
+            return "Unable to check for migrations:\n" . $this->error;
         }
 
         return 'Pending migrations. Call "php artisan migrate" to update database.';

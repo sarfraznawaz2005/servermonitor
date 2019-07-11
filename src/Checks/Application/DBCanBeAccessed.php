@@ -52,6 +52,6 @@ class DBCanBeAccessed implements Check
      */
     public function message(): string
     {
-        return 'The database can not be accessed: ' . $this->error;
+        return "The database can not be accessed:\n" . $this->error;
     }
 }
