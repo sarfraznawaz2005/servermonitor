@@ -30,15 +30,14 @@ class ServerMonitor
      */
     public function getChecks(): array
     {
-        $serverChecks['server.checks'] = config('server-monitor.checks.server');
-        $applicationCommonChecks['application.common.checks'] = config('server-monitor.checks.application.common');
-
         $key = 'application.' . config('app.env') . '.checks';
         $env = $this->isProduction() ? 'production' : 'development';
 
+        $serverChecks['server.checks'] = config('server-monitor.checks.server');
+        $commonChecks['application.common.checks'] = config('server-monitor.checks.application.common');
         $envChecks[$key] = config("server-monitor.checks.application.$env");
 
-        $checks = array_merge($serverChecks, $applicationCommonChecks, $envChecks);
+        $checks = array_merge($serverChecks, $commonChecks, $envChecks);
 
         return array_filter($checks);
     }
