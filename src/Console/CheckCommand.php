@@ -4,6 +4,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Console;
 
 use Illuminate\Console\Command;
 use Sarfraznawaz2005\ServerMonitor\Checks\Application\EnvFileExists;
+use Sarfraznawaz2005\ServerMonitor\ServerMonitor;
 
 class CheckCommand extends Command
 {
@@ -22,35 +23,28 @@ class CheckCommand extends Command
             $this->warn('Server Monitor is disabled!');
         }
 
-        $object = app()->make(EnvFileExists::class);
-        $checksAll = $object->getChecks();
+        $sm = app()->make(ServerMonitor::class);
+        $results = $sm->runChecks();
 
         $count = 0;
-        foreach ($checksAll as $type => $checks) {
-            if ($checks) {
-                $this->comment(strtoupper($type));
+        foreach ($results as $type => $checks) {
+            $this->comment(strtoupper($type));
 
-                foreach ($checks as $check => $config) {
-                    $count++;
+            foreach ($checks as $check) {
+                $count++;
 
-                    if (!is_array($config)) {
-                        $check = $config;
-                        $config = [];
-                    }
+                $name = $check['name'];
+                $message = $check['message'];
 
-                    $class = app()->make($check);
-                    $name = $class->name();
-                    $message = $class->message();
-
-                    if ($class->check($config)) {
-                        $text = "$count: <fg=green>PASS --> $name</fg=green>";
-                    } else {
-                        $text = "$count: <fg=red>FAIL --> $name ($message)</fg=red>";
-                    }
-
-                    $this->line($text);
+                if ($check['result']) {
+                    $text = "$count: <fg=green>PASS --> $name</fg=green>";
+                } else {
+                    $text = "$count: <fg=red>FAIL --> $name ($message)</fg=red>";
                 }
+
+                $this->line($text);
             }
         }
+
     }
 }

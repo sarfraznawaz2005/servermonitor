@@ -8,10 +8,9 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
-use Sarfraznawaz2005\ServerMonitor\Checks\BaseCheck;
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
-class ConfigNotCached extends BaseCheck implements Check
+class ConfigNotCached implements Check
 {
     /**
      * The name of the check.

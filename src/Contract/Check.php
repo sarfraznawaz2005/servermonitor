@@ -8,7 +8,6 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Contract;
 
-
 interface Check
 {
     /**

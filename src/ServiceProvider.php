@@ -41,6 +41,11 @@ class ServiceProvider extends BaseServiceProvider
         $this->commands([
             'command.servermonitor.check'
         ]);
+
+        // Register the service the package provides.
+        $this->app->singleton('ServerMonitor', function () {
+            return $this->app->make(ServerMonitor::class);
+        });
     }
 
     /**

@@ -8,10 +8,9 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
-use Sarfraznawaz2005\ServerMonitor\Checks\BaseCheck;
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
-class DebugModeOff extends BaseCheck implements Check
+class DebugModeOff implements Check
 {
     /**
      * The name of the check.
@@ -41,6 +40,6 @@ class DebugModeOff extends BaseCheck implements Check
      */
     public function message(): string
     {
-        return 'The APP_DEBUG should be TRUE in non-production environment & FALSE in production environment.';
+        return 'The APP_DEBUG should be FALSE in production environment.';
     }
 }
