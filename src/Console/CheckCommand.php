@@ -30,7 +30,7 @@ class CheckCommand extends Command
         foreach ($results as $type => $checks) {
             foreach ($checks as $check) {
                 $name = $check['name'];
-                $message = '';
+                $message = 'None';
 
                 if ($check['result']) {
                     $result = '<fg=green>PASSED</fg=green>';
