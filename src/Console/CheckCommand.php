@@ -36,6 +36,8 @@ class CheckCommand extends Command
                 $name = $check['name'];
                 $message = $check['message'];
 
+                $count = str_pad($count, 2, '0', STR_PAD_LEFT);
+
                 if ($check['result']) {
                     $text = "$count: <fg=green>PASS --> $name</fg=green>";
                 } else {
