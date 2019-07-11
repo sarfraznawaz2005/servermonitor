@@ -43,6 +43,10 @@ class CheckCommand extends Command
             }
         }
 
+        if (!app()->runningInConsole()) {
+            echo '<pre>';
+        }
+
         $headers = ['Check Type', 'Check Name', 'Result', 'Error'];
 
         $this->table($headers, $data);
