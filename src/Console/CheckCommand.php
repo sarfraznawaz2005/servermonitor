@@ -20,6 +20,7 @@ class CheckCommand extends Command
     {
         if (!config('server-monitor.enabled')) {
             $this->warn('Server Monitor is disabled!');
+            return false;
         }
 
         $sm = app()->make(ServerMonitor::class);
