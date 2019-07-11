@@ -8,10 +8,14 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
-class DebugModeOff implements Check
+class DBCanBeAccessed implements Check
 {
+    private $error;
+
     /**
      * The name of the check.
      *
@@ -19,7 +23,7 @@ class DebugModeOff implements Check
      */
     public function name(): string
     {
-        return 'APP_DEBUG is on';
+        return 'Database can be accessed';
     }
 
     /**
@@ -30,7 +34,15 @@ class DebugModeOff implements Check
      */
     public function check(array $config): bool
     {
-        return !config('app.debug');
+        try {
+            DB::connection(config('database.default'))->getPdo();
+
+            return true;
+        } catch (\Exception $e) {
+            $this->error = $e->getMessage();
+        }
+
+        return false;
     }
 
     /**
@@ -40,6 +52,6 @@ class DebugModeOff implements Check
      */
     public function message(): string
     {
-        return 'The APP_DEBUG should be FALSE in production environment.';
+        return 'The database can not be accessed: ' . $this->error;
     }
 }

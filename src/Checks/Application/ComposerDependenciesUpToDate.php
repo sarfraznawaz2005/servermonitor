@@ -10,8 +10,9 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
-class DebugModeOff implements Check
+class ComposerDependenciesUpToDate implements Check
 {
+
     /**
      * The name of the check.
      *
@@ -19,7 +20,7 @@ class DebugModeOff implements Check
      */
     public function name(): string
     {
-        return 'APP_DEBUG is on';
+        return 'Composer dependencies are up-to-date';
     }
 
     /**
@@ -30,7 +31,13 @@ class DebugModeOff implements Check
      */
     public function check(array $config): bool
     {
-        return !config('app.debug');
+        $composer = config('server-monitor.binaries.composer');
+
+        chdir(base_path());
+        exec("$composer install --dry-run 2>&1", $output, $status);
+        $output = implode('-', $output);
+
+        return stripos($output, 'Nothing to install') >= 0;
     }
 
     /**
@@ -40,6 +47,6 @@ class DebugModeOff implements Check
      */
     public function message(): string
     {
-        return 'The APP_DEBUG should be FALSE in production environment.';
+        return 'The composer dependencies are not up to date. Call "composer install" to update them.';
     }
 }

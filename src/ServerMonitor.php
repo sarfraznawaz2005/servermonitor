@@ -60,15 +60,16 @@ class ServerMonitor
         foreach ($checksAll as $type => $checks) {
             if ($checks) {
                 foreach ($checks as $check => $config) {
+
                     if (!is_array($config)) {
                         $check = $config;
                         $config = [];
                     }
 
-                    $object = new $check();
+                    $object = app()->make($check);
+                    $result = $object->check($config);
                     $name = $object->name();
                     $message = $object->message();
-                    $result = $object->check($config);
 
                     $results[] = [
                         'type' => $type,

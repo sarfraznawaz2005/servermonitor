@@ -20,7 +20,9 @@
     "check"
   ],
   "require": {
-    "illuminate/support": "~5"
+    "php": "^7.0",
+    "illuminate/support": "~5",
+    "composer/semver": "^1.4"
   },
   "autoload": {
     "psr-4": {

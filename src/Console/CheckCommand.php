@@ -3,7 +3,6 @@
 namespace Sarfraznawaz2005\ServerMonitor\Console;
 
 use Illuminate\Console\Command;
-use Sarfraznawaz2005\ServerMonitor\Checks\Application\EnvFileExists;
 use Sarfraznawaz2005\ServerMonitor\ServerMonitor;
 
 class CheckCommand extends Command
