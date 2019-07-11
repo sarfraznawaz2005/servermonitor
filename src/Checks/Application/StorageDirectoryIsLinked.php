@@ -8,10 +8,18 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
+use Illuminate\Filesystem\Filesystem;
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
-class ComposerDependenciesUpToDate implements Check
+class StorageDirectoryIsLinked implements Check
 {
+    private $filesystem;
+
+    public function __construct(Filesystem $filesystem)
+    {
+        $this->filesystem = $filesystem;
+    }
+
     /**
      * The name of the check.
      *
@@ -19,7 +27,7 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function name(): string
     {
-        return 'Composer dependencies are up to date';
+        return 'Storage directory is linked';
     }
 
     /**
@@ -30,13 +38,11 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function check(array $config): bool
     {
-        $binary = $config['binary_path'];
-
-        chdir(base_path());
-        exec("$binary install --dry-run 2>&1", $output, $status);
-        $output = implode('-', $output);
-
-        return strstr($output, 'Nothing to install');
+        try {
+            return $this->filesystem->isDirectory(public_path('storage'));
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -46,6 +52,6 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function message(): string
     {
-        return 'The composer dependencies are not up to date. Call "composer install" to update them.';
+        return 'The storage directory is not linked. Use "php artisan storage:link" to create a symbolic link.';
     }
 }

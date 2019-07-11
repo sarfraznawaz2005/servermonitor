@@ -8,10 +8,14 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
-class ComposerDependenciesUpToDate implements Check
+class PhpExtensionsAreDisabled implements Check
 {
+    private $extensions;
+
     /**
      * The name of the check.
      *
@@ -19,7 +23,7 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function name(): string
     {
-        return 'Composer dependencies are up to date';
+        return 'Unwanted PHP extensions are disabled';
     }
 
     /**
@@ -30,13 +34,13 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function check(array $config): bool
     {
-        $binary = $config['binary_path'];
+        $this->extensions = Collection::make(Arr::get($config, 'extensions', []));
 
-        chdir(base_path());
-        exec("$binary install --dry-run 2>&1", $output, $status);
-        $output = implode('-', $output);
+        $this->extensions = $this->extensions->reject(static function ($ext) {
+            return extension_loaded($ext) === false;
+        });
 
-        return strstr($output, 'Nothing to install');
+        return $this->extensions->isEmpty();
     }
 
     /**
@@ -46,6 +50,6 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function message(): string
     {
-        return 'The composer dependencies are not up to date. Call "composer install" to update them.';
+        return 'The following extensions are not disabled:' . $this->extensions->implode(PHP_EOL);
     }
 }

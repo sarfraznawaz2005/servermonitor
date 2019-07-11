@@ -10,7 +10,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
-class ComposerDependenciesUpToDate implements Check
+class RoutesAreCached implements Check
 {
     /**
      * The name of the check.
@@ -19,7 +19,7 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function name(): string
     {
-        return 'Composer dependencies are up to date';
+        return 'Routes are cached';
     }
 
     /**
@@ -30,13 +30,7 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function check(array $config): bool
     {
-        $binary = $config['binary_path'];
-
-        chdir(base_path());
-        exec("$binary install --dry-run 2>&1", $output, $status);
-        $output = implode('-', $output);
-
-        return strstr($output, 'Nothing to install');
+        return app()->routesAreCached() === true;
     }
 
     /**
@@ -46,6 +40,6 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function message(): string
     {
-        return 'The composer dependencies are not up to date. Call "composer install" to update them.';
+        return 'The routes should be cached in production for better performance. Call "php artisan route:cache" to create the route cache.';
     }
 }

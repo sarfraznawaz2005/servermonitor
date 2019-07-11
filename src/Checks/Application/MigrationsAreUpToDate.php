@@ -8,10 +8,13 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
+use Illuminate\Support\Facades\Artisan;
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
-class ComposerDependenciesUpToDate implements Check
+class MigrationsAreUpToDate implements Check
 {
+    private $error = null;
+
     /**
      * The name of the check.
      *
@@ -19,7 +22,7 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function name(): string
     {
-        return 'Composer dependencies are up to date';
+        return 'Migrations are up to date';
     }
 
     /**
@@ -30,13 +33,16 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function check(array $config): bool
     {
-        $binary = $config['binary_path'];
+        try {
+            Artisan::call('migrate', ['--pretend' => 'true', '--force' => 'true']);
+            $output = Artisan::output();
 
-        chdir(base_path());
-        exec("$binary install --dry-run 2>&1", $output, $status);
-        $output = implode('-', $output);
+            return strstr($output, 'Nothing to migrate.');
+        } catch (\Exception $e) {
+            $this->error = $e->getMessage();
+        }
 
-        return strstr($output, 'Nothing to install');
+        return false;
     }
 
     /**
@@ -46,6 +52,10 @@ class ComposerDependenciesUpToDate implements Check
      */
     public function message(): string
     {
-        return 'The composer dependencies are not up to date. Call "composer install" to update them.';
+        if ($this->error !== null) {
+            return 'Unable to check for migrations: ' . $this->error;
+        }
+
+        return 'Pending migrations. Call "php artisan migrate" to update database.';
     }
 }

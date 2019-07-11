@@ -45,7 +45,7 @@ class DirectoriesHaveCorrectPermissions implements Check
      */
     public function check(array $config): bool
     {
-        $this->paths = Collection::make(Arr::get($config, 'directories', []));
+        $this->paths = Collection::make(Arr::get($config, 'paths', []));
 
         $this->paths = $this->paths->reject(function ($path) {
             return $this->filesystem->isWritable($path);
