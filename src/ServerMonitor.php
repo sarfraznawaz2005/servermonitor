@@ -34,12 +34,9 @@ class ServerMonitor
         $applicationCommonChecks['application.common.checks'] = config('server-monitor.checks.application.common');
 
         $key = 'application.' . config('app.env') . '.checks';
+        $env = $this->isProduction() ? 'production' : 'development';
 
-        if ($this->isProduction()) {
-            $envChecks[$key] = config('server-monitor.checks.application.production');
-        } else {
-            $envChecks[$key] = config('server-monitor.checks.application.development');
-        }
+        $envChecks[$key] = config("server-monitor.checks.application.$env");
 
         $checks = array_merge($serverChecks, $applicationCommonChecks, $envChecks);
 
