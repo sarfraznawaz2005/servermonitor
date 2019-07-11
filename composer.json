@@ -1,0 +1,38 @@
+{
+  "name": "sarfraznawaz2005/servermonitor",
+  "description": "Laravel package to periodically monitor the health of your server and website.",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Sarfraz Ahmed",
+      "email": "sarfraznawaz2005@gmail.com",
+      "homepage": "http://codeinphp.github.io"
+    }
+  ],
+  "homepage": "https://github.com/sarfraznawaz2005/servermonitor",
+  "keywords": [
+    "Laravel",
+    "server",
+    "monitor",
+    "health",
+    "status",
+    "check"
+  ],
+  "require": {
+    "illuminate/support": "~5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sarfraznawaz2005\\ServerMonitor\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Sarfraznawaz2005\\ServerMonitor\\ServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable"
+}
