@@ -19,7 +19,7 @@ class RoutesAreNotCached implements Check
      */
     public function name(): string
     {
-        return 'Routes are not cached';
+        return 'Routes Cache';
     }
 
     /**

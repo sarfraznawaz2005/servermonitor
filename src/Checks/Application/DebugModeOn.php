@@ -19,7 +19,7 @@ class DebugModeOn implements Check
      */
     public function name(): string
     {
-        return 'APP_DEBUG is on';
+        return 'APP_DEBUG Status';
     }
 
     /**
