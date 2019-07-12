@@ -35,7 +35,7 @@ class ServerMonitor
      *
      * @return array
      */
-    public function getChecks(): array
+    public function getCheckClasses(): array
     {
         $key = 'application.' . config('app.env') . '.checks';
         $env = $this->isProduction() ? 'production' : 'development';
@@ -56,7 +56,7 @@ class ServerMonitor
     {
         $results = [];
 
-        $checksAll = $this->getChecks();
+        $checksAll = $this->getCheckClasses();
 
         foreach ($checksAll as $type => $checks) {
             if ($checks) {
@@ -88,5 +88,24 @@ class ServerMonitor
         @file_put_contents($this->cacheFile, serialize($results));
 
         return $results;
+    }
+
+    /**
+     * Returns check results from cache file or optionally run and return new check results
+     *
+     * @param bool $refresh
+     * @return array
+     */
+    public function getChecks($refresh = false): array
+    {
+        if ($refresh) {
+            $this->runChecks();
+        } else {
+            if (!file_exists($this->cacheFile)) {
+                return [];
+            }
+        }
+
+        return unserialize(file_get_contents($this->cacheFile));
     }
 }

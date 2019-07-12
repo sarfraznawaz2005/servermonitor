@@ -23,14 +23,13 @@ class StatusCommand extends BaseCommand
         }
 
         $sm = new ServerMonitor();
+        $results = $sm->getChecks();
 
         // load from cache or run new checks
         if (!file_exists($sm->cacheFile)) {
             $this->warn('No checks run previously. Please run "servermonitor:check" command to run checks first.');
             return false;
         }
-
-        $results = unserialize(file_get_contents($sm->cacheFile));
 
         $this->outputResults($results);
     }
