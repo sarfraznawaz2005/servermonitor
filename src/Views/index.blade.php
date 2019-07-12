@@ -38,7 +38,7 @@
                         $icon = $isOk ? 'success' : 'danger';
                         $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="'.$check['error'].'"';
 
-                        echo "<td><span ' . $popover . ' class='col-sm-8 badge badge-$icon'>$text</span></td>";
+                        echo "<td><span ' . $popover . ' class='col-sm-10 badge badge-$icon'>$text</span></td>";
                     @endphp
                     <td style="text-align: center;">
                         <span class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Run this check" style="font-size: 10px;"><i class="fa fa-refresh" style="font-size: 10px;"></i></span>
