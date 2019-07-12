@@ -10,6 +10,7 @@ namespace Sarfraznawaz2005\ServerMonitor;
 
 
 use Carbon\Carbon;
+use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
 class ServerMonitor
 {
@@ -90,6 +91,46 @@ class ServerMonitor
         @file_put_contents($this->cacheFile, serialize($results));
 
         return $results;
+    }
+
+    /**
+     * Runs given single check and returns result.
+     *
+     * @param $checkClass
+     * @return array
+     */
+    public function runCheck($checkClass): array
+    {
+        $checksAll = $this->getCheckClasses();
+
+        foreach ($checksAll as $type => $checks) {
+            if ($checks) {
+                foreach ($checks as $check => $config) {
+
+                    if (!is_array($config)) {
+                        $check = $config;
+                        $config = [];
+                    }
+
+                    if ($checkClass === $check) {
+                        $object = app()->make($check);
+                        $result = $object->check($config);
+                        $name = $object->name();
+                        $error = $object->message();
+
+                        return [
+                            'type' => $type,
+                            'checker' => $check,
+                            'name' => $name,
+                            'status' => $result,
+                            'error' => $error,
+                        ];
+                    }
+                }
+            }
+        }
+
+        return [];
     }
 
     /**

@@ -21,7 +21,7 @@
             <th>Check Type</th>
             <th>Check Name</th>
             <th>Status</th>
-            <th style="text-align: center;" width="1">Action</th>
+            <th style="text-align: center;" width="1">Run</th>
         </tr>
         </thead>
 
@@ -41,7 +41,15 @@
                         echo "<td><span ' . $popover . ' class='col-sm-10 badge badge-$icon'>$text</span></td>";
                     @endphp
                     <td style="text-align: center;">
-                        <span class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Run this check" style="font-size: 10px;"><i class="fa fa-refresh" style="font-size: 10px;"></i></span>
+                        <span
+                                class="btn btn-primary btn-sm refresh"
+                                id="{{$check['checker']}}"
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                title="Run this check"
+                                style="font-size: 10px;">
+                            <i class="fa fa-refresh" style="font-size: 10px;"></i>
+                        </span>
                     </td>
                 </tr>
             @endforeach
@@ -150,6 +158,15 @@
 
 @push('scripts')
     <script>
+
+        $('[data-toggle="popover"]').popover({
+            html: true,
+            placement: 'top',
+            trigger: 'hover'
+        });
+
+        $('[data-toggle="tooltip"]').tooltip();
+
         $('.table').DataTable({
             "order": [],
             "responsive": true,
@@ -174,12 +191,28 @@
             }
         });
 
-        // refresh checks
+        // refresh all checks
         $('#btnRefresh').click(function () {
             $('#overlay').show();
 
             $.get('{{route('servermonitor_refresh_all')}}', function () {
                 window.location.reload();
+            });
+        });
+
+        // refresh single check
+        $('.refresh').click(function () {
+            $('#overlay').show();
+
+            $.get('{{route('servermonitor_refresh')}}', {check: this.id}, function (result) {
+                $('#overlay').hide();
+
+                if (result.status) {
+                    swal("Passed", "Check Passed Successfully!", "success");
+                }
+                else {
+                    swal("Failed", result.error, "error");
+                }
             });
         });
 

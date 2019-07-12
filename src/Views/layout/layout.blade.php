@@ -115,16 +115,7 @@
 <script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.1/js/responsive.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
-
-<script>
-    $('[data-toggle="popover"]').popover({
-        html: true,
-        placement: 'top',
-        trigger: 'hover'
-    });
-
-    $('[data-toggle="tooltip"]').tooltip();
-</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 @stack('scripts')
 

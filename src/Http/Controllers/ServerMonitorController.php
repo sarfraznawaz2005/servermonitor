@@ -44,4 +44,12 @@ class ServerMonitorController extends BaseController
     {
         return $this->serverMonitor->runChecks();
     }
+
+    /**
+     * Runs given single check.
+     */
+    public function refresh(): array
+    {
+        return $this->serverMonitor->runCheck(request()->check);
+    }
 }

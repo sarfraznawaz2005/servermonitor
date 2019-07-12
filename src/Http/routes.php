@@ -8,7 +8,7 @@ Route::group(
     static function () {
         // list checks
         Route::get('/', 'ServerMonitorController@index');
+        Route::get('refresh', 'ServerMonitorController@refresh')->name('servermonitor_refresh');
         Route::get('refresh_all', 'ServerMonitorController@refreshAll')->name('servermonitor_refresh_all');
-        Route::get('refresh/{name}', 'ServerMonitorController@refresh');
     }
 );
