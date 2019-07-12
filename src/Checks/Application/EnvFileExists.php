@@ -12,7 +12,6 @@ use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
 class EnvFileExists implements Check
 {
-
     /**
      * The name of the check.
      *

@@ -4,7 +4,7 @@
 
 @section('header')
     <button type="submit" id="btnRefresh" class="btn btn-warning btn-sm">
-        <i class="fa fa-refresh"></i> Refresh All
+        <i class="fa fa-refresh"></i> Run All Checks
     </button>
 @endsection
 
@@ -36,7 +36,7 @@
                         $isOk = $check['status'] == 1;
                         $text = $isOk ? 'Passed':'Failed';
                         $icon = $isOk ? 'success' : 'danger';
-                        $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="'.$check['error'].'"';
+                        $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="' . $check['error'] . '"';
 
                         echo "<td><span ' . $popover . ' class='col-sm-10 badge badge-$icon'>$text</span></td>";
                     @endphp

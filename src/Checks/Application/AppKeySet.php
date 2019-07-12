@@ -40,6 +40,6 @@ class AppKeySet implements Check
      */
     public function message(): string
     {
-        return 'The APP_KEY is not set. Call "php artisan key:generate" to set one.';
+        return "The APP_KEY is not set. Call 'php artisan key:generate' to set one.";
     }
 }

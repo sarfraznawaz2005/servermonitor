@@ -74,10 +74,6 @@ class ServerMonitor
                     $name = $object->name();
                     $error = $object->message();
 
-                    if (!app()->runningInConsole()) {
-                        $error = nl2br($error);
-                    }
-
                     $results[] = [
                         'type' => $type,
                         'checker' => $check,

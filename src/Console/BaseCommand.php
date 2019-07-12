@@ -25,17 +25,13 @@ abstract class BaseCommand extends Command
         foreach ($results as $type => $checks) {
             foreach ($checks as $check) {
                 $name = $check['name'];
-                $error = 'None';
+                $error = '';
 
                 if ($check['status']) {
                     $result = '<fg=green>PASSED</fg=green>';
                 } else {
                     $error = $check['error'];
                     $result = '<fg=red>FAILED</fg=red>';
-                }
-
-                if (!app()->runningInConsole()) {
-                    echo '<pre>';
                 }
 
                 $data[] = [$type, $name, $result, $error];

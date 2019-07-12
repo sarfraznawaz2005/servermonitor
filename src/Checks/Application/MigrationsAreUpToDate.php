@@ -56,6 +56,6 @@ class MigrationsAreUpToDate implements Check
             return "Unable to check for migrations:\n" . $this->error;
         }
 
-        return 'Pending migrations. Call "php artisan migrate" to update database.';
+        return "Pending migrations. Call 'php artisan migrate' to update database.";
     }
 }
