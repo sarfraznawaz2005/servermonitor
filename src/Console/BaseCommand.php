@@ -25,12 +25,12 @@ abstract class BaseCommand extends Command
         foreach ($results as $type => $checks) {
             foreach ($checks as $check) {
                 $name = $check['name'];
-                $message = 'None';
+                $error = 'None';
 
                 if ($check['status']) {
                     $result = '<fg=green>PASSED</fg=green>';
                 } else {
-                    $message = $check['message'];
+                    $error = $check['error'];
                     $result = '<fg=red>FAILED</fg=red>';
                 }
 
@@ -38,7 +38,7 @@ abstract class BaseCommand extends Command
                     echo '<pre>';
                 }
 
-                $data[] = [$type, $name, $result, $message];
+                $data[] = [$type, $name, $result, $error];
             }
         }
 

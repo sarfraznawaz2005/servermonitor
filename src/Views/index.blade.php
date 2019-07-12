@@ -11,7 +11,7 @@
 @section('content')
 
     <div class="text-center">
-        <span class="badge-primary badge" style="font-size: 12px;">Last Run: {{$lastRun}}</span>
+        <span class="badge-success badge" style="font-size: 12px;">Last Checked: {{$lastRun}}</span>
     </div>
 
     <table class="table mx-auto" cellspacing="0" style="font-size: 14px; color: #555; width: 80%;">
@@ -25,16 +25,6 @@
         </tr>
         </thead>
 
-        <tfoot style="background: #eee;">
-        <tr>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
-            <th>Status</th>
-            <th>&nbsp;</th>
-        </tr>
-        </tfoot>
-
         <tbody>
         @foreach($checkResults as $type => $checks)
             @foreach($checks as $index => $check)
@@ -46,11 +36,12 @@
                         $isOk = $check['status'] == 1;
                         $text = $isOk ? 'Passed':'Failed';
                         $icon = $isOk ? 'success' : 'danger';
+                        $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="'.$check['error'].'"';
 
-                        echo "<td><span class='col-sm-6 badge badge-$icon'>$text</span></td>";
+                        echo "<td><span ' . $popover . ' class='col-sm-8 badge badge-$icon'>$text</span></td>";
                     @endphp
                     <td style="text-align: center;">
-                        <input type="checkbox" name="backups[]" class="chkBackup" value="{{$check['name']}}">
+                        <span class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Run this check" style="font-size: 10px;"><i class="fa fa-refresh" style="font-size: 10px;"></i></span>
                     </td>
                 </tr>
             @endforeach
@@ -159,7 +150,7 @@
 
 @push('scripts')
     <script>
-        var table = $('.table').DataTable({
+        $('.table').DataTable({
             "order": [],
             "responsive": true,
             "paging": false,
@@ -183,34 +174,10 @@
             }
         });
 
-        // filter columns
-        $(".table tfoot th:eq(2)").each(function (i) {
-            var select = $('<select><option value=""></option></select>')
-                .appendTo($(this).empty())
-                .on('change', function () {
-                    table.column(i)
-                        .search($(this).val(), true, false)
-                        .draw();
-                });
-
-            table.column(3).data().unique().sort().each(function (d, j) {
-                var val = $(d).text().replace(/\s/g, '');
-
-                select.append('<option value="' + val + '">' + val + '</option>')
-            });
-        });
-
-        function showOverlay() {
-            $('#overlay').show();
-        }
-
-        function hideOverlay() {
-            $('#overlay').show();
-        }
-
         // refresh checks
         $('#btnRefresh').click(function () {
-            showOverlay();
+            $('#overlay').show();
+
             $.get('{{route('servermonitor_refresh_all')}}', function () {
                 window.location.reload();
             });

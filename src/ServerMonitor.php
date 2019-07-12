@@ -72,10 +72,10 @@ class ServerMonitor
                     $object = app()->make($check);
                     $result = $object->check($config);
                     $name = $object->name();
-                    $message = $object->message();
+                    $error = $object->message();
 
                     if (!app()->runningInConsole()) {
-                        $message = nl2br($message);
+                        $error = nl2br($error);
                     }
 
                     $results[] = [
@@ -83,7 +83,7 @@ class ServerMonitor
                         'checker' => $check,
                         'name' => $name,
                         'status' => $result,
-                        'message' => $message,
+                        'error' => $error,
                     ];
                 }
             }
