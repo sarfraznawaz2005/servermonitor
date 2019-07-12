@@ -100,10 +100,8 @@ class ServerMonitor
     {
         if ($refresh) {
             $this->runChecks();
-        } else {
-            if (!file_exists($this->cacheFile)) {
-                return [];
-            }
+        } elseif (!file_exists($this->cacheFile)) {
+            return [];
         }
 
         return unserialize(file_get_contents($this->cacheFile));
