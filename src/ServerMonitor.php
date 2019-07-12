@@ -9,9 +9,11 @@
 namespace Sarfraznawaz2005\ServerMonitor;
 
 
+use Carbon\Carbon;
+
 class ServerMonitor
 {
-    public $cacheFile = null;
+    public $cacheFile;
 
     public function __construct()
     {
@@ -72,11 +74,15 @@ class ServerMonitor
                     $name = $object->name();
                     $message = $object->message();
 
+                    if (!app()->runningInConsole()) {
+                        $message = nl2br($message);
+                    }
+
                     $results[] = [
                         'type' => $type,
                         'checker' => $check,
                         'name' => $name,
-                        'result' => $result,
+                        'status' => $result,
                         'message' => $message,
                     ];
                 }
@@ -105,5 +111,19 @@ class ServerMonitor
         }
 
         return unserialize(file_get_contents($this->cacheFile));
+    }
+
+    /**
+     * Returns last check-run time
+     *
+     * @return string
+     */
+    public function getLastCheckedTime(): string
+    {
+        if (!file_exists($this->cacheFile)) {
+            return 'N/A';
+        }
+
+        return Carbon::parse(date('F d Y H:i:s.', filemtime($this->cacheFile)))->diffForHumans();
     }
 }

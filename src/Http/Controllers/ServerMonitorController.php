@@ -7,20 +7,41 @@ use Sarfraznawaz2005\ServerMonitor\ServerMonitor;
 
 class ServerMonitorController extends BaseController
 {
-    public function __construct()
+    protected $serverMonitor;
+
+    /**
+     * ServerMonitorController constructor.
+     * @param ServerMonitor $serverMonitor
+     */
+    public function __construct(ServerMonitor $serverMonitor)
     {
         if (config('server-monitor.http_authentication')) {
             $this->middleware('auth.basic');
         }
+
+        $this->serverMonitor = $serverMonitor;
     }
 
+    /**
+     * Lists status of all checks.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
-        $title = 'Server Monitor Checks Status';
+        $title = 'ServerMonitor';
 
-        $sm = app()->make(ServerMonitor::class);
-        $results = $sm->runChecks();
+        $checkResults = $this->serverMonitor->getChecks();
+        $lastRun = $this->serverMonitor->getLastCheckedTime();
 
-        return view('servermonitor::index', compact('title', 'results'));
+        return view('servermonitor::index', compact('title', 'checkResults', 'lastRun'));
+    }
+
+    /**
+     * Runs checks for all services.
+     */
+    public function refreshAll(): array
+    {
+        return $this->serverMonitor->runChecks();
     }
 }

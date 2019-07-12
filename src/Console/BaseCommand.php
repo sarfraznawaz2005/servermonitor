@@ -27,7 +27,7 @@ abstract class BaseCommand extends Command
                 $name = $check['name'];
                 $message = 'None';
 
-                if ($check['result']) {
+                if ($check['status']) {
                     $result = '<fg=green>PASSED</fg=green>';
                 } else {
                     $message = $check['message'];
@@ -36,14 +36,13 @@ abstract class BaseCommand extends Command
 
                 if (!app()->runningInConsole()) {
                     echo '<pre>';
-                    $message = nl2br($message);
                 }
 
                 $data[] = [$type, $name, $result, $message];
             }
         }
 
-        $headers = ['Check Type', 'Check Name', 'Result', 'Error'];
+        $headers = ['Check Type', 'Check Name', 'Status', 'Error'];
 
         $this->table($headers, $data);
     }

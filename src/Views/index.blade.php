@@ -1,88 +1,67 @@
-@extends('backupmanager::layout.layout')
+@extends('servermonitor::layout.layout')
 
 @section('title', $title)
 
 @section('header')
-    <button type="submit" class="btn btn-warning btn-sm"><i class="fa fa-plus"></i> Create New Backup</button>
+    <button type="submit" id="btnRefresh" class="btn btn-warning btn-sm">
+        <i class="fa fa-refresh"></i> Refresh All
+    </button>
 @endsection
 
 @section('content')
 
-    <form id="frm" action="{{route('backupmanager_restore_delete')}}" method="post">
-        {!! csrf_field() !!}
+    <div class="text-center">
+        <span class="badge-primary badge" style="font-size: 12px;">Last Run: {{$lastRun}}</span>
+    </div>
 
-        <table class="table" style="font-size: 14px; color: #777777;">
-            <thead>
-            <tr>
-                <th style="text-align: center;" width="1">#</th>
-                <th>Name</th>
-                <th>Date</th>
-                <th>Size</th>
-                <th style="text-align: center;">Health</th>
-                <th style="text-align: center;">Type</th>
-                <th style="text-align: center;">Download</th>
-                <th style="text-align: center;" width="1">Action</th>
-            </tr>
-            </thead>
+    <table class="table mx-auto" cellspacing="0" style="font-size: 14px; color: #555; width: 80%;">
+        <thead>
+        <tr>
+            <th style="text-align: center;" width="1">#</th>
+            <th>Check Type</th>
+            <th>Check Name</th>
+            <th>Status</th>
+            <th style="text-align: center;" width="1">Action</th>
+        </tr>
+        </thead>
 
-            <tbody>
-            @foreach($backups as $index => $backup)
+        <tfoot style="background: #eee;">
+        <tr>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>Status</th>
+            <th>&nbsp;</th>
+        </tr>
+        </tfoot>
+
+        <tbody>
+        @foreach($checkResults as $type => $checks)
+            @foreach($checks as $index => $check)
                 <tr>
-                    <td style="text-align: center;">{{++$index}}</td>
-                    <td>{{$backup['name']}}</td>
-                    <td class="date">{{$backup['date']}}</td>
-                    <td>{{$backup['size']}}</td>
-                    <td style="text-align: center;">
-                        <?php
-                        $okSizeBytes = 1024;
-                        $isOk = $backup['size_raw'] >= $okSizeBytes;
-                        $text = $isOk ? 'Good' : 'Bad';
+                    <td style="text-align: center; font-weight: bold;">{{++$index}}</td>
+                    <td>{{strtoupper($check['type'])}}</td>
+                    <td><strong>{{$check['name']}}</strong></td>
+                    @php
+                        $isOk = $check['status'] == 1;
+                        $text = $isOk ? 'Passed':'Failed';
                         $icon = $isOk ? 'success' : 'danger';
 
-                        echo "<span class='col-sm-8 badge badge-$icon'>$text</span>";
-                        ?>
-                    </td>
+                        echo "<td><span class='col-sm-6 badge badge-$icon'>$text</span></td>";
+                    @endphp
                     <td style="text-align: center;">
-                        <span class="col-sm-8 badge badge-{{$backup['type'] === 'Files' ? 'primary' : 'success'}}">{{$backup['type']}}</span>
-                    </td>
-                    <td style="text-align: center;">
-                        <a href="{{ route('backupmanager_download', [$backup['name']])  }}">
-                            <i class="fa fa-download btn btn-primary"></i>
-                        </a>
-                    </td>
-                    <td style="text-align: center;">
-                        <input type="checkbox" name="backups[]" class="chkBackup" value="{{$backup['name']}}">
+                        <input type="checkbox" name="backups[]" class="chkBackup" value="{{$check['name']}}">
                     </td>
                 </tr>
             @endforeach
-            </tbody>
-        </table>
-
-        <br><br>
-
-        @if (count($backups))
-            <input type="hidden" name="type" value="restore" id="type">
-
-            <div class="pull-right" style="margin-right: 15px;">
-                <button type="submit" id="btnSubmit" class="btn btn-success" disabled="disabled">
-                    <i class="fa fa-refresh"></i>
-                    <small><strong>Restore</strong></small>
-                </button>
-                <button type="submit" id="btnDelete" class="btn btn-danger" disabled="disabled">
-                    <i class="fa fa-remove"></i>
-                    <small><strong>Delete</strong></small>
-                </button>
-            </div>
-            <div class="clearfix"></div>
-        @endif
-
-    </form>
+        @endforeach
+        </tbody>
+    </table>
 
     <div id="overlay">
         <div class="spinner"></div>
         <span class="overlay-message">Working, please wait...</span>
     </div>
-
 
 @endsection
 
@@ -180,102 +159,45 @@
 
 @push('scripts')
     <script>
-
-        $('.table').DataTable({
+        var table = $('.table').DataTable({
             "order": [],
             "responsive": true,
-            "pageLength": 10,
-            "autoWidth": false,
+            "paging": false,
+            "info": false,
+            "searching": false,
+            "sort": false,
+            "pageLength": 100,
+            "autoWidth": true,
             aoColumnDefs: [
                 {
                     bSortable: false,
                     aTargets: [-1]
+                },
+                {
+                    visible: false,
+                    aTargets: [1]
                 }
             ],
             rowGroup: {
-                dataSrc: 2
+                dataSrc: 1
             }
         });
 
-        var $btnSubmit = $('#btnSubmit');
-        var $btnDelete = $('#btnDelete');
-        var $type = $('#type');
-        var type = 'restore';
+        // filter columns
+        $(".table tfoot th:eq(2)").each(function (i) {
+            var select = $('<select><option value=""></option></select>')
+                .appendTo($(this).empty())
+                .on('change', function () {
+                    table.column(i)
+                        .search($(this).val(), true, false)
+                        .draw();
+                });
 
-        $btnSubmit.on('click', function () {
-            $type.val('restore');
-            type = 'restore';
-        });
+            table.column(3).data().unique().sort().each(function (d, j) {
+                var val = $(d).text().replace(/\s/g, '');
 
-        $btnDelete.on('click', function () {
-            $type.val('delete');
-            type = 'delete';
-        });
-
-        $(document).on('click', '.chkBackup', function () {
-            var checkedCount = $('.chkBackup:checked').length;
-
-            if (checkedCount > 0) {
-                $btnSubmit.attr('disabled', false);
-                $btnDelete.attr('disabled', false);
-            }
-            else {
-                $btnSubmit.attr('disabled', true);
-                $btnDelete.attr('disabled', true);
-            }
-
-            if (this.checked) {
-                $(this).closest('tr').addClass('warning');
-            }
-            else {
-                $(this).closest('tr').removeClass('warning');
-            }
-        });
-
-        $('#frm').submit(function () {
-            var $this = this;
-            var checkedCount = $('.chkBackup:checked').length;
-            var $btn = $('#btnSubmit');
-
-            if (!checkedCount) {
-                swal("Please select backup(s) first!");
-                return false;
-            }
-
-            if (checkedCount > 2 && type === 'restore') {
-                swal("Please select one or two backups max.");
-                return false;
-            }
-
-            var msg = 'Continue with restoration process ?';
-
-            if (type === 'delete') {
-                msg = 'Are you sure you want to delete selected backups ?';
-            }
-
-            swal({
-                title: "Confirm",
-                text: msg,
-                icon: "warning",
-                buttons: true,
-                dangerMode: true
-            }).then(function (response) {
-                if (response) {
-                    $btn.attr('disabled', true);
-
-                    $this.submit();
-
-                    showOverlay();
-                }
+                select.append('<option value="' + val + '">' + val + '</option>')
             });
-
-            return false;
-        });
-
-        $('#frmNew').submit(function () {
-            this.submit();
-
-            showOverlay();
         });
 
         function showOverlay() {
@@ -285,6 +207,14 @@
         function hideOverlay() {
             $('#overlay').show();
         }
+
+        // refresh checks
+        $('#btnRefresh').click(function () {
+            showOverlay();
+            $.get('{{route('servermonitor_refresh_all')}}', function () {
+                window.location.reload();
+            });
+        });
 
     </script>
 @endpush
