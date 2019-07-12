@@ -12,6 +12,12 @@ use Illuminate\Console\Command;
 
 abstract class BaseCommand extends Command
 {
+
+    /**
+     * Outputs check results on console.
+     *
+     * @param array $results
+     */
     protected function outputResults(array $results)
     {
         $data = [];
