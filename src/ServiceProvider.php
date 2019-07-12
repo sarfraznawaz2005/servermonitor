@@ -4,6 +4,7 @@ namespace Sarfraznawaz2005\ServerMonitor;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Sarfraznawaz2005\ServerMonitor\Console\CheckCommand;
+use Sarfraznawaz2005\ServerMonitor\Console\StatusCommand;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -41,15 +42,12 @@ class ServiceProvider extends BaseServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/Config/config.php', 'servermonitor');
 
         $this->app->bind('command.servermonitor.check', CheckCommand::class);
+        $this->app->bind('command.servermonitor.status', StatusCommand::class);
 
         $this->commands([
-            'command.servermonitor.check'
+            'command.servermonitor.check',
+            'command.servermonitor.status'
         ]);
-
-        // Register the service the package provides.
-        $this->app->singleton('ServerMonitor', function () {
-            return $this->app->make(ServerMonitor::class);
-        });
     }
 
     /**

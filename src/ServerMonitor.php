@@ -11,6 +11,13 @@ namespace Sarfraznawaz2005\ServerMonitor;
 
 class ServerMonitor
 {
+    public $cacheFile = null;
+
+    public function __construct()
+    {
+        $this->cacheFile = storage_path('sm_checks.cache');
+    }
+
     /**
      * Checks if current application environment is production.
      *
@@ -37,9 +44,7 @@ class ServerMonitor
         $commonChecks['application.common.checks'] = config('server-monitor.checks.application.common');
         $envChecks[$key] = config("server-monitor.checks.application.$env");
 
-        $checks = array_merge($serverChecks, $commonChecks, $envChecks);
-
-        return array_filter($checks);
+        return array_filter(array_merge($serverChecks, $commonChecks, $envChecks));
     }
 
     /**
@@ -79,6 +84,8 @@ class ServerMonitor
         }
 
         $results = collect($results)->groupBy('type')->toArray();
+
+        @file_put_contents($this->cacheFile, serialize($results));
 
         return $results;
     }

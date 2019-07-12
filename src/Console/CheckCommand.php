@@ -2,13 +2,12 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Console;
 
-use Illuminate\Console\Command;
 use Sarfraznawaz2005\ServerMonitor\ServerMonitor;
 
-class CheckCommand extends Command
+class CheckCommand extends BaseCommand
 {
     protected $name = 'servermonitor:check';
-    protected $description = 'Checks status of all server and application checks.';
+    protected $description = 'Starts new checks process for server and application.';
 
     /**
      * Execute the console command.
@@ -23,32 +22,9 @@ class CheckCommand extends Command
             return false;
         }
 
-        $sm = app()->make(ServerMonitor::class);
+        $sm = new ServerMonitor();
         $results = $sm->runChecks();
 
-        $data = [];
-        foreach ($results as $type => $checks) {
-            foreach ($checks as $check) {
-                $name = $check['name'];
-                $message = 'None';
-
-                if ($check['result']) {
-                    $result = '<fg=green>PASSED</fg=green>';
-                } else {
-                    $message = $check['message'];
-                    $result = '<fg=red>FAILED</fg=red>';
-                }
-
-                $data[] = [$type, $name, $result, $message];
-            }
-        }
-
-        if (!app()->runningInConsole()) {
-            echo '<pre>';
-        }
-
-        $headers = ['Check Type', 'Check Name', 'Result', 'Error'];
-
-        $this->table($headers, $data);
+        $this->outputResults($results);
     }
 }
