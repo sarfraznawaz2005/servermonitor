@@ -13,23 +13,23 @@
     @if (isset($checkResults['counts']))
         <div class="mx-auto" style="width: 80%; padding:0 12px;">
             <div class="float-left">
-            <span class="badge-success badge" style="font-size: 12px;">
-            Passed: {{$checkResults['counts']['passed_checks_count']}}
-        </span>
+                <span class="badge-success badge" style="font-size: 12px;">
+                Passed: {{$checkResults['counts']['passed_checks_count']}}
+                </span>
                 <span class="badge-danger badge" style="font-size: 12px;">
-            Failed: {{$checkResults['counts']['failed_checks_count']}}
-        </span>
+                Failed: {{$checkResults['counts']['failed_checks_count']}}
+                </span>
                 <span class="badge-primary badge" style="font-size: 12px;">
-            Total: {{$checkResults['counts']['total_checks_count']}}
-        </span>
-
-                @php unset($checkResults['counts']) @endphp
+                Total: {{$checkResults['counts']['total_checks_count']}}
+                </span>
             </div>
             <div class="float-right">
                 <span class="badge-success badge" style="font-size: 12px;">Last Checked: {{$lastRun}}</span>
             </div>
             <div class="clearfix"></div>
         </div>
+
+        @php unset($checkResults['counts']) @endphp
     @endif
 
     <div class="table-responsive-sm">
