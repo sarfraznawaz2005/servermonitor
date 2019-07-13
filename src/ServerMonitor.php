@@ -71,10 +71,12 @@ class ServerMonitor
                         $config = [];
                     }
 
+                    $sTime = microtime(true);
                     $object = app()->make($check);
                     $result = $object->check($config);
                     $name = $object->name();
                     $error = $object->message();
+                    $eTime = round(microtime(true) - $sTime, 2);
 
                     $results[] = [
                         'type' => $type,
@@ -82,6 +84,7 @@ class ServerMonitor
                         'name' => $name,
                         'status' => $result,
                         'error' => $error,
+                        'time' => sprintf("%ds", $eTime),
                     ];
                 }
             }
@@ -114,10 +117,12 @@ class ServerMonitor
                     }
 
                     if ($checkClass === $this->getClassName($check)) {
+                        $sTime = microtime(true);
                         $object = app()->make($check);
                         $result = $object->check($config);
                         $name = $object->name();
                         $error = $object->message();
+                        $eTime = round(microtime(true) - $sTime, 2);
 
                         return [
                             'type' => $type,
@@ -125,6 +130,7 @@ class ServerMonitor
                             'name' => $name,
                             'status' => $result,
                             'error' => $error,
+                            'time' => sprintf("%ds", $eTime),
                         ];
                     }
                 }
