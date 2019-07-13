@@ -6,7 +6,7 @@ use Sarfraznawaz2005\ServerMonitor\ServerMonitor;
 
 class StatusCommand extends BaseCommand
 {
-    protected $name = 'servermonitor:status';
+    protected $signature = 'servermonitor:status {checker? : Optional check to see status for.}';
     protected $description = 'Checks status of server & application checks without running new checks process.';
 
     /**
@@ -23,14 +23,20 @@ class StatusCommand extends BaseCommand
         }
 
         $sm = new ServerMonitor();
-        $results = $sm->getChecks();
 
-        // load from cache or run new checks
-        if (!file_exists($sm->cacheFile)) {
-            $this->warn('No checks run previously. Please run "servermonitor:check" command to run checks first.');
-            return false;
+        if ($check = trim($this->argument('checker'))) {
+            $results = $sm->runCheck($check);
+            $this->outputResult($results);
+        } else {
+            $results = $sm->getChecks();
+
+            // load from cache or run new checks
+            if (!file_exists($sm->cacheFile)) {
+                $this->warn('No checks run previously. Please run "servermonitor:check" command to run checks first.');
+                return false;
+            }
+
+            $this->outputResults($results);
         }
-
-        $this->outputResults($results);
     }
 }
