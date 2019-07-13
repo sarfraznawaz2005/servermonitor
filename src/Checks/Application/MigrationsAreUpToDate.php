@@ -9,12 +9,11 @@
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
 class MigrationsAreUpToDate implements Check
 {
-    private $error = null;
-
     /**
      * The name of the check.
      *
@@ -33,16 +32,25 @@ class MigrationsAreUpToDate implements Check
      */
     public function check(array $config): bool
     {
-        try {
-            Artisan::call('migrate', ['--pretend' => 'true', '--force' => 'true']);
-            $output = Artisan::output();
+        Artisan::call('migrate:status');
+        $output = Artisan::output();
 
-            return strstr($output, 'Nothing to migrate.');
-        } catch (\Exception $e) {
-            $this->error = $e->getMessage();
+        if (Str::contains(trim($output), 'No migrations')) {
+            return true;
         }
 
-        return false;
+        $output = collect(explode("\n", $output));
+        $output = $output->reject(function ($item) {
+            return !Str::contains($item, '| N    | ');
+        });
+
+        $count = $output->count() !== 0;
+
+        if ($count) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -52,10 +60,6 @@ class MigrationsAreUpToDate implements Check
      */
     public function message(): string
     {
-        if ($this->error !== null) {
-            return "Unable to check for migrations:\n" . $this->error;
-        }
-
         return "Pending migrations. Call 'php artisan migrate' to update database.";
     }
 }
