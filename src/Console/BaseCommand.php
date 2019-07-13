@@ -22,6 +22,14 @@ abstract class BaseCommand extends Command
     {
         $data = [];
 
+        $this->info(
+            '<fg=green>Passed: ' . $results['counts']['passed_checks_count'] . "</fg=green>\t" .
+            '<fg=red>Failed: ' . $results['counts']['failed_checks_count'] . "</fg=red>\t" .
+            '<fg=yellow>Total: ' . $results['counts']['total_checks_count'] . '</fg=yellow>'
+        );
+
+        unset($results['counts']);
+
         foreach ($results as $type => $checks) {
             foreach ($checks as $check) {
                 $error = '';

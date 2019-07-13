@@ -4,43 +4,60 @@
 
 @section('header')
     <button type="submit" id="btnRefresh" class="btn btn-warning btn-sm">
-        <i class="fa fa-refresh"></i> Run All Checks
+        <i class="fa fa-play"></i> Run All Checks
     </button>
 @endsection
 
 @section('content')
 
-    <div class="text-center">
-        <span class="badge-success badge" style="font-size: 12px;">Last Checked: {{$lastRun}}</span>
+    <div class="mx-auto" style="width: 80%; padding:0 12px;">
+        <div class="float-left">
+            <span class="badge-success badge" style="font-size: 12px;">
+            Passed: {{$checkResults['counts']['passed_checks_count']}}
+        </span>
+            <span class="badge-danger badge" style="font-size: 12px;">
+            Failed: {{$checkResults['counts']['failed_checks_count']}}
+        </span>
+            <span class="badge-primary badge" style="font-size: 12px;">
+            Total: {{$checkResults['counts']['total_checks_count']}}
+        </span>
+
+            @php unset($checkResults['counts']) @endphp
+        </div>
+        <div class="float-right">
+            <span class="badge-success badge" style="font-size: 12px;">Last Checked: {{$lastRun}}</span>
+        </div>
+        <div class="clearfix"></div>
     </div>
 
-    <table class="table mx-auto" cellspacing="0" style="font-size: 14px; color: #555; width: 80%;">
-        <thead>
-        <tr>
-            <th style="text-align: center;" width="1">#</th>
-            <th>Check Type</th>
-            <th>Check Name</th>
-            <th>Status</th>
-            <th style="text-align: center;" width="1">Run</th>
-        </tr>
-        </thead>
+    <div class="table-responsive-sm">
+        <table class="table table-hover table-bordered table-sm mx-auto" cellspacing="0" style="font-size: 14px; color: #555; width: 80%;">
+            <thead>
+            <tr>
+                <th style="text-align: center;" width="1">#</th>
+                <th>Check Type</th>
+                <th>Check Name</th>
+                <th>Status</th>
+                <th style="text-align: center;" width="1">Run</th>
+            </tr>
+            </thead>
 
-        <tbody>
-        @foreach($checkResults as $type => $checks)
-            @foreach($checks as $index => $check)
-                <tr>
-                    <td style="text-align: center; font-weight: bold;">{{++$index}}</td>
-                    <td>{{strtoupper($check['type'])}}</td>
-                    <td><strong>{{$check['name']}}</strong></td>
-                    @php
-                        $isOk = $check['status'] == 1;
-                        $text = $isOk ? 'Passed':'Failed';
-                        $icon = $isOk ? 'success' : 'danger';
-                        $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="' . $check['error'] . '"';
+            <tbody>
+            @foreach($checkResults as $type => $checks)
+                @foreach($checks as $index => $check)
+                    <tr>
+                        <td style="text-align: center; font-weight: bold;">{{++$index}}</td>
+                        <td>{{strtoupper($check['type'])}}</td>
+                        <td><strong>{{$check['name']}}</strong></td>
+                        @php
+                            $isOk = $check['status'] == 1;
+                            $text = $isOk ? 'Passed':'Failed';
+                            $icon = $isOk ? 'success' : 'danger';
+                            $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="' . $check['error'] . '"';
 
-                        echo "<td><span ' . $popover . ' class='col-sm-10 badge badge-$icon'>$text</span></td>";
-                    @endphp
-                    <td style="text-align: center;">
+                            echo "<td><span style='font-size: 14px;' ' . $popover . ' class='col-sm-12 badge badge-$icon'>$text</span></td>";
+                        @endphp
+                        <td style="text-align: center;">
                         <span
                                 class="btn btn-primary btn-sm refresh"
                                 data-checker="{{$check['checker']}}"
@@ -48,14 +65,15 @@
                                 data-placement="top"
                                 title="Run this check"
                                 style="font-size: 10px;">
-                            <i class="fa fa-refresh" style="font-size: 10px;"></i>
+                            <i class="fa fa-play" style="font-size: 10px;"></i>
                         </span>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                @endforeach
             @endforeach
-        @endforeach
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
     <div id="overlay">
         <div class="spinner"></div>

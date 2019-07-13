@@ -62,9 +62,12 @@ class ServerMonitor
 
         $checksAll = $this->getCheckClasses();
 
+        $totalChecksCount = 0;
+        $passedChecksCount = 0;
         foreach ($checksAll as $type => $checks) {
             if ($checks) {
                 foreach ($checks as $check => $config) {
+                    $totalChecksCount++;
 
                     if (!is_array($config)) {
                         $check = $config;
@@ -73,16 +76,20 @@ class ServerMonitor
 
                     $sTime = microtime(true);
                     $object = app()->make($check);
-                    $result = $object->check($config);
+                    $status = $object->check($config);
                     $name = $object->name();
                     $error = $object->message();
                     $eTime = round(microtime(true) - $sTime, 2);
+
+                    if ($status) {
+                        $passedChecksCount++;
+                    }
 
                     $results[] = [
                         'type' => $type,
                         'checker' => $this->getClassName($check),
                         'name' => $name,
-                        'status' => $result,
+                        'status' => $status,
                         'error' => $error,
                         'time' => sprintf("%ds", $eTime),
                     ];
@@ -91,6 +98,12 @@ class ServerMonitor
         }
 
         $results = collect($results)->groupBy('type')->toArray();
+
+        $results['counts'] = [
+            'total_checks_count' => $totalChecksCount,
+            'passed_checks_count' => $passedChecksCount,
+            'failed_checks_count' => $totalChecksCount - $passedChecksCount,
+        ];
 
         @file_put_contents($this->cacheFile, serialize($results));
 
@@ -119,7 +132,7 @@ class ServerMonitor
                     if ($checkClass === $this->getClassName($check)) {
                         $sTime = microtime(true);
                         $object = app()->make($check);
-                        $result = $object->check($config);
+                        $status = $object->check($config);
                         $name = $object->name();
                         $error = $object->message();
                         $eTime = round(microtime(true) - $sTime, 2);
@@ -128,7 +141,7 @@ class ServerMonitor
                             'type' => $type,
                             'checker' => $check,
                             'name' => $name,
-                            'status' => $result,
+                            'status' => $status,
                             'error' => $error,
                             'time' => sprintf("%ds", $eTime),
                         ];
