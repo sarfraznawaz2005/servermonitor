@@ -38,7 +38,7 @@
                style="font-size: 14px; color: #555; width: 70%;">
             <thead>
             <tr>
-                <th style="text-align: center;" width="1">#</th>
+                <th style="text-align: center;" width="40">#</th>
                 <th>Check Name</th>
                 <th style="text-align: center;" width="150">Status</th>
                 <th style="text-align: center;" width="50">Run</th>
@@ -49,7 +49,9 @@
             @foreach($checkResults as $type => $checks)
                 <tr>
                     <td colspan="99" align="center">
-                        <span style="font-size: 12px;" class="badge-primary badge badge-pill">{{strtoupper($type)}}</span>
+                        <span style="font-size: 12px;" class="badge-primary badge badge-pill">
+                            {{strtoupper($type)}}
+                        </span>
                     </td>
                 </tr>
                 @foreach($checks as $index => $check)
