@@ -8,10 +8,8 @@
 
 namespace Sarfraznawaz2005\ServerMonitor;
 
-
 use Carbon\Carbon;
 use InvalidArgumentException;
-use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
 class ServerMonitor
 {
