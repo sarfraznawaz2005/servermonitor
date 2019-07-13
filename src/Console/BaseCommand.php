@@ -42,4 +42,27 @@ abstract class BaseCommand extends Command
 
         $this->table($headers, $data);
     }
+
+    /**
+     * Outputs check result on console.
+     *
+     * @param array $result
+     */
+    protected function outputResult(array $result)
+    {
+        $error = '';
+
+        if ($result['status']) {
+            $status = '<fg=green>PASSED</fg=green>';
+        } else {
+            $error = $result['error'];
+            $status = '<fg=red>FAILED</fg=red>';
+        }
+
+        $data[] = [$result['type'], $result['name'], $status, $error];
+
+        $headers = ['Check Type', 'Check Name', 'Status', 'Error'];
+
+        $this->table($headers, $data);
+    }
 }

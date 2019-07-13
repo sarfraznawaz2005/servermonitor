@@ -43,7 +43,7 @@
                     <td style="text-align: center;">
                         <span
                                 class="btn btn-primary btn-sm refresh"
-                                id="{{$check['checker']}}"
+                                data-checker="{{$check['checker']}}"
                                 data-toggle="tooltip"
                                 data-placement="top"
                                 title="Run this check"
@@ -204,7 +204,7 @@
         $('.refresh').click(function () {
             $('#overlay').show();
 
-            $.get('{{route('servermonitor_refresh')}}', {check: this.id}, function (result) {
+            $.get('{{route('servermonitor_refresh')}}', {check: $(this).data('checker')}, function (result) {
                 $('#overlay').hide();
 
                 if (result.status) {

@@ -10,6 +10,7 @@ namespace Sarfraznawaz2005\ServerMonitor;
 
 
 use Carbon\Carbon;
+use InvalidArgumentException;
 use Sarfraznawaz2005\ServerMonitor\Contract\Check;
 
 class ServerMonitor
@@ -77,7 +78,7 @@ class ServerMonitor
 
                     $results[] = [
                         'type' => $type,
-                        'checker' => $check,
+                        'checker' => $this->getClassName($check),
                         'name' => $name,
                         'status' => $result,
                         'error' => $error,
@@ -112,7 +113,7 @@ class ServerMonitor
                         $config = [];
                     }
 
-                    if ($checkClass === $check) {
+                    if ($checkClass === $this->getClassName($check)) {
                         $object = app()->make($check);
                         $result = $object->check($config);
                         $name = $object->name();
@@ -130,7 +131,7 @@ class ServerMonitor
             }
         }
 
-        return [];
+        throw new InvalidArgumentException("$checkClass not found!");
     }
 
     /**
@@ -162,5 +163,18 @@ class ServerMonitor
         }
 
         return Carbon::parse(date('F d Y H:i:s.', filemtime($this->cacheFile)))->diffForHumans();
+    }
+
+    /**
+     * Returns class name from FQN
+     *
+     * @param $namespace
+     * @return mixed
+     */
+    public function getClassName($namespace)
+    {
+        $path = explode('\\', $namespace);
+
+        return array_pop($path);
     }
 }
