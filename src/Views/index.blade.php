@@ -10,28 +10,31 @@
 
 @section('content')
 
-    <div class="mx-auto" style="width: 80%; padding:0 12px;">
-        <div class="float-left">
+    @if (isset($checkResults['counts']))
+        <div class="mx-auto" style="width: 80%; padding:0 12px;">
+            <div class="float-left">
             <span class="badge-success badge" style="font-size: 12px;">
             Passed: {{$checkResults['counts']['passed_checks_count']}}
         </span>
-            <span class="badge-danger badge" style="font-size: 12px;">
+                <span class="badge-danger badge" style="font-size: 12px;">
             Failed: {{$checkResults['counts']['failed_checks_count']}}
         </span>
-            <span class="badge-primary badge" style="font-size: 12px;">
+                <span class="badge-primary badge" style="font-size: 12px;">
             Total: {{$checkResults['counts']['total_checks_count']}}
         </span>
 
-            @php unset($checkResults['counts']) @endphp
+                @php unset($checkResults['counts']) @endphp
+            </div>
+            <div class="float-right">
+                <span class="badge-success badge" style="font-size: 12px;">Last Checked: {{$lastRun}}</span>
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="float-right">
-            <span class="badge-success badge" style="font-size: 12px;">Last Checked: {{$lastRun}}</span>
-        </div>
-        <div class="clearfix"></div>
-    </div>
+    @endif
 
     <div class="table-responsive-sm">
-        <table class="table table-hover table-bordered table-sm mx-auto" cellspacing="0" style="font-size: 14px; color: #555; width: 80%;">
+        <table class="table table-hover table-bordered table-sm mx-auto" cellspacing="0"
+               style="font-size: 14px; color: #555; width: 80%;">
             <thead>
             <tr>
                 <th style="text-align: center;" width="1">#</th>
