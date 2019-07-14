@@ -15,6 +15,10 @@ class ServerMonitorController extends BaseController
      */
     public function __construct(ServerMonitor $serverMonitor)
     {
+        if (!config('server-monitor.enabled')) {
+            exit('Server Monitor is disabled!');
+        }
+
         if (config('server-monitor.http_authentication')) {
             $this->middleware('auth.basic');
         }
