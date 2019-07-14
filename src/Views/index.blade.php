@@ -3,7 +3,7 @@
 @section('title', $title)
 
 @section('header')
-    <button type="submit" id="btnRefresh" class="btn btn-warning btn-sm">
+    <button type="submit" id="btnRefresh" class="btn btn-light btn-block">
         <i class="fa fa-play"></i> Run All Checks
     </button>
 @endsection
@@ -11,7 +11,7 @@
 @section('content')
 
     @if (isset($checkResults['counts']))
-        <div class="mx-auto" style="width: 70%; font-size: 16px; padding-bottom:2px;">
+        <div class="mx-auto" style="width: 70%; font-size: 16px; background: #fff; padding: 8px; margin-top: 15px; line-height: 100%;">
             <div class="float-left">
                 <span class="badge-success badge">
                 Passed: {{$checkResults['counts']['passed_checks_count']}}
@@ -64,7 +64,7 @@
                             $icon = $isOk ? 'success' : 'danger';
                             $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="' . $check['error'] . '"';
 
-                            echo "<td style='text-align: center;'><span style='font-size: 14px; padding-bottom:6px;' ' . $popover . ' class='col-sm-10 badge badge-$icon'>$text</span></td>";
+                            echo "<td style='text-align: center;'><span style='font-size: 12px; padding-bottom:6px;' ' . $popover . ' class='col-sm-10 badge badge-$icon'>$text</span></td>";
                         @endphp
                         <td style="text-align: center;">
                         <span
