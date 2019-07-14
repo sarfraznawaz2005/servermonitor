@@ -50,7 +50,7 @@
                 <tr>
                     <td colspan="99" align="center">
                         <span style="font-size: 12px;" class="badge-primary badge badge-pill">
-                            {{strtoupper($type)}}
+                            {{strtoupper(str_replace('.', ' ', $type))}}
                         </span>
                     </td>
                 </tr>

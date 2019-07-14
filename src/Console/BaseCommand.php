@@ -31,6 +31,9 @@ abstract class BaseCommand extends Command
         unset($results['counts']);
 
         foreach ($results as $type => $checks) {
+
+            $type = ucwords(str_replace('.', ' ', $type));
+
             foreach ($checks as $check) {
                 $error = '';
 
@@ -65,6 +68,8 @@ abstract class BaseCommand extends Command
             $error = $result['error'];
             $status = '<fg=red>FAILED</fg=red>';
         }
+
+        $result['type'] = ucwords(str_replace('.', ' ', $result['type']));
 
         $data[] = [$result['type'], $result['name'], $status, $result['time'], $error];
 
