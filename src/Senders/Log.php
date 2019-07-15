@@ -24,6 +24,7 @@ class Log implements Sender
         $title = $config['notification_subject'] ?? config('server-monitor.notifications.notification_subject');
         $name = $check->name();
         $error = $check->message();
+
         $body = "$title : $name ($error)";
 
         \Log::critical($body);

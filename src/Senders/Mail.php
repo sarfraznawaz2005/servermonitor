@@ -22,28 +22,29 @@ class Mail implements Sender
      */
     public function send(Check $check, array $config)
     {
-        $title = $config['notification_subject'] ?? config('server-monitor.notifications.notification_subject');
+        $subject = $config['notification_subject'] ?? config('server-monitor.notifications.notification_subject');
         $from = ($config['notification_mail_from'] ?? config('server-monitor.notifications.notification_mail_from')) ?? null;
 
         $name = $check->name();
         $error = $check->message();
+
         $body = "<strong>$name</strong><br><br>$error";
 
         $emails = config('server-monitor.notifications.notification_notify_emails');
 
         if ($emails) {
             foreach ($emails as $email) {
-                \Mail::send([], [], static function (Message $message) use ($title, $from, $email, $body) {
+                \Mail::send([], [], static function (Message $message) use ($subject, $from, $email, $body) {
 
                     if ($from) {
                         $message
-                            ->subject($title)
+                            ->subject($subject)
                             ->from($from)
                             ->to($email)
                             ->setBody($body, 'text/html');
                     } else {
                         $message
-                            ->subject($title)
+                            ->subject($subject)
                             ->to($email)
                             ->setBody($body, 'text/html');
                     }
