@@ -2,30 +2,55 @@
 
 return [
 
-    #-------------------------------------------------------------------
-    # Enable or disable Server Monitor
+    /*
+    |--------------------------------------------------------------------------
+    | Enable / Disable
+    |--------------------------------------------------------------------------
+    |
+    | Enable or disable Server Monitor
+    |
+    */
     'enabled' => env('ENABLE_SERVER_MONITOR', true),
-    #-------------------------------------------------------------------
 
-    #-------------------------------------------------------------------
-    # Route where Server Monitor will be available in your app.
+    /*
+    |--------------------------------------------------------------------------
+    | Server Monitor Web Route
+    |--------------------------------------------------------------------------
+    |
+    | Define route where Server Monitor will be available in your app.
+    |
+    */
     'route' => 'servermonitor',
-    #-------------------------------------------------------------------
 
-    #-------------------------------------------------------------------
-    # If "true", the Server Monitor page can be viewed by any user who provides
-    # correct login information (eg all app users).
+    /*
+    |--------------------------------------------------------------------------
+    | Basic Http Authentication
+    |--------------------------------------------------------------------------
+    |
+    | If "true", the Server Monitor page can be viewed by any user who provides
+    | correct login information (eg all app users).
+    |
+    */
     'http_authentication' => false,
-    #-------------------------------------------------------------------
 
-    #-------------------------------------------------------------------
-    # Define name(s) of production environment you use
-    #-------------------------------------------------------------------
+    /*
+    |--------------------------------------------------------------------------
+    | Production Environment Name
+    |--------------------------------------------------------------------------
+    |
+    | Define name(s) of production environment you use
+    |
+    */
     'production_environments' => ['production', 'prod', 'live'],
-    #-------------------------------------------------------------------
 
-    #-------------------------------------------------------------------
-    # Define checks for server and application that will be performed
+    /*
+    |--------------------------------------------------------------------------
+    | Application & Server Checks
+    |--------------------------------------------------------------------------
+    |
+    | Define checks for server and application that will be performed
+    |
+    */
     'checks' => [
 
         // These checks are for server only
@@ -77,6 +102,51 @@ return [
             ]
         ],
     ],
-    #-------------------------------------------------------------------
+
+    /*
+    |--------------------------------------------------------------------------
+    | Setup Notification
+    |--------------------------------------------------------------------------
+    | Setup notification options, how you want to get notified and other details.
+    |
+    | Note that you can overridd all below options for individual check notification
+    | like so:
+    |
+    |   \Sarfraznawaz2005\ServerMonitor\Checks\Application\AppKeySet::class => [
+            'notification_channel' => 'log'
+            'notification_notify_emails' => ['foo@example.com']
+            'disable_notification' => false // enable/disable notification for this check only.
+    |   ]
+    |
+    | NOTE: For Laravel <= 5.1, we only send simple email because notifications
+    | are were not built into those versions.
+    |
+    */
+
+    'notifications' => [
+        /*
+        |--------------------------------------------------------------------------
+        | Notifications Settings
+        |--------------------------------------------------------------------------
+        */
+
+        // Type environments names to enable notifications on.
+        'notification_enabled_on' => ['production', 'live'],
+
+        // Define default notification channel
+        'notification_channel' => 'mail', // log, mail
+
+        // notification subject
+        'notification_subject' => 'Server Monitor Alert',
+
+        // Define default email(s) that will receive notification when a check fails.
+        'notification_notify_emails' => [
+            'foo@example.com',
+        ],
+
+        // Define mail channel "from". Leave empty to use default.
+        'notification_mail_from' => '',
+    ],
+
 
 ];

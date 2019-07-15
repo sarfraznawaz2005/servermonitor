@@ -11,7 +11,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use Sarfraznawaz2005\ServerMonitor\Contract\Check;
+use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
 class DirectoriesHaveCorrectPermissions implements Check
 {

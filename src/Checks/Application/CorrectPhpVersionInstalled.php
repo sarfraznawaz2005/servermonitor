@@ -11,7 +11,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
-use Sarfraznawaz2005\ServerMonitor\Contract\Check;
+use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 use Composer\Semver\Semver;
 
 class CorrectPhpVersionInstalled implements Check

@@ -9,7 +9,6 @@
 namespace Sarfraznawaz2005\ServerMonitor;
 
 use Carbon\Carbon;
-use InvalidArgumentException;
 
 class ServerMonitor
 {
@@ -81,6 +80,8 @@ class ServerMonitor
 
                     if ($status) {
                         $passedChecksCount++;
+                    } else {
+                        Notifier::notify($object, $config);
                     }
 
                     $results[] = [
@@ -148,7 +149,7 @@ class ServerMonitor
             }
         }
 
-        throw new InvalidArgumentException("$checkClass not found!");
+        throw new \InvalidArgumentException("$checkClass not found!");
     }
 
     /**

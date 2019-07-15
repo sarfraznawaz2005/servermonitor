@@ -9,7 +9,7 @@
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
 use Illuminate\Filesystem\Filesystem;
-use Sarfraznawaz2005\ServerMonitor\Contract\Check;
+use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
 class StorageDirectoryIsLinked implements Check
 {

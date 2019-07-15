@@ -8,7 +8,7 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
-use Sarfraznawaz2005\ServerMonitor\Contract\Check;
+use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
 class ComposerDependenciesUpToDate implements Check
 {

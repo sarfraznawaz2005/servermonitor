@@ -10,7 +10,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
-use Sarfraznawaz2005\ServerMonitor\Contract\Check;
+use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
 class MigrationsAreUpToDate implements Check
 {

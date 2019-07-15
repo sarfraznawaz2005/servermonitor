@@ -6,7 +6,7 @@
  * Time: 2:40 PM
  */
 
-namespace Sarfraznawaz2005\ServerMonitor\Contract;
+namespace Sarfraznawaz2005\ServerMonitor\Checks;
 
 interface Check
 {
