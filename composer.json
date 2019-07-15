@@ -22,7 +22,8 @@
   "require": {
     "php": "^7.0",
     "illuminate/support": "~5",
-    "composer/semver": "^1.4"
+    "composer/semver": "^1.4",
+    "maknz/slack": "~1.7"
   },
   "autoload": {
     "psr-4": {

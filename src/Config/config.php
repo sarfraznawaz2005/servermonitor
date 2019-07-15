@@ -113,9 +113,9 @@ return [
     | like so:
     |
     |   \Sarfraznawaz2005\ServerMonitor\Checks\Application\AppKeySet::class => [
-            'notification_channel' => 'log'
-            'notification_notify_emails' => ['foo@example.com']
-            'disable_notification' => false // enable/disable notification for this check only.
+    |        'notification_channel' => 'log'
+    |        'notification_notify_emails' => ['foo@example.com']
+    |        'disable_notification' => false // enable/disable notification for this check only.
     |   ]
     |
     | NOTE: For Laravel <= 5.1, we only send simple email because notifications
@@ -126,7 +126,7 @@ return [
     'notifications' => [
         /*
         |--------------------------------------------------------------------------
-        | Notifications Settings
+        | General Notifications Settings
         |--------------------------------------------------------------------------
         */
 
@@ -134,10 +134,16 @@ return [
         'notification_enabled_on' => ['production', 'live'],
 
         // Define default notification channel
-        'notification_channel' => 'mail', // log, mail
+        'notification_channel' => 'mail', // log, mail, slack, pushover
 
         // notification subject
         'notification_subject' => 'Server Monitor Alert',
+
+        /*
+        |--------------------------------------------------------------------------
+        | Mail Channel Settings
+        |--------------------------------------------------------------------------
+        */
 
         // Define default email(s) that will receive notification when a check fails.
         'notification_notify_emails' => [
@@ -146,6 +152,28 @@ return [
 
         // Define mail channel "from". Leave empty to use default.
         'notification_mail_from' => '',
+
+        /*
+        |--------------------------------------------------------------------------
+        | Slack Channel Settings
+        |--------------------------------------------------------------------------
+        */
+
+        'notification_slack_hook_url' => 'https://hooks.slack.com/services/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', // see: https://api.slack.com/incoming-webhooks
+        'notification_slack_channel' => '#tslapp',
+        'notification_slack_username' => 'Server Monitor',
+        'notification_slack_icon' => ':robot:',
+        'notification_slack_color' => 'warning',
+
+        /*
+        |--------------------------------------------------------------------------
+        | PushOver Channel Settings
+        |--------------------------------------------------------------------------
+        */
+
+        'notification_pushover_token' => 'an6fwnwim3f9qvqe34rh5ioichhmhi',
+        'notification_pushover_user' => 'ukzoafvgrurfpmgq3uunk6vq4u66s7',
+        'notification_pushover_sound' => 'siren',
     ],
 
 
