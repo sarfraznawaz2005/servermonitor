@@ -107,13 +107,17 @@ protected function schedule(Schedule $schedule)
 
 ## Web Interface
 
-The package provides built-in web interface. You can customize the route of web interface in config file `'route' => 'servermonitor'`.
+The package provides built-in web interface. You can customize the route of web interface in config file `'route' => 'servermonitor'`. Once done, you can visit Web Interface at url `http://yourapp.com/servermonitor`. Replace `servermonitor` with route you used.
 
 ![Screen 1](https://github.com/sarfraznawaz2005/servermonitor/blob/master/screen1.gif?raw=true)
 
 ![Screen 2](https://github.com/sarfraznawaz2005/servermonitor/blob/master/screen2.gif?raw=true)
 
+**Disabling Web Interface**
+
 If you would like to disable Web Interface, you can set `web_interface_enabled` to `false` and now hitting web interface route would result in 404.
+
+**Getting Checks Programmatically**
 
 If you still would like to show status of various checks in your view in your own way, you can get status of all checks programmatically like so:
 
@@ -157,7 +161,7 @@ You can also disable alerts for individual checks like so:
 
 ### Creating Your Own Custom Checks
 
-You can create custom checks, by implementing the [`BeyondCode\SelfDiagnosis\Checks\Check`] interface and adding the class to the config file. Example:
+You can create custom checks, by implementing the [`Sarfraznawaz2005\ServerMonitor\Checks\Check`] interface and adding the class to the config file. Example:
 
 ````php
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
