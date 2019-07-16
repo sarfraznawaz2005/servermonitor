@@ -23,10 +23,6 @@ class ServerMonitorController extends BaseController
             abort(404);
         }
 
-        if (config('server-monitor.http_authentication')) {
-            $this->middleware('auth.basic');
-        }
-
         $this->serverMonitor = $serverMonitor;
     }
 

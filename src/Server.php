@@ -5,7 +5,7 @@ namespace Sarfraznawaz2005\ServerMonitor;
 /**
  * DTO class for a server used by the ping check.
  *
- * @package BeyondCode\SelfDiagnosis
+ * @via BeyondCode\SelfDiagnosis
  */
 class Server
 {
@@ -18,7 +18,7 @@ class Server
     /** @var int */
     protected $timeout;
 
-    public function __construct(string $host, int $port, int $timeout)
+    public function __construct($host, $port, $timeout)
     {
         $this->host = $host;
         $this->port = $port;
@@ -30,7 +30,7 @@ class Server
         return $this->host;
     }
 
-    public function getPort(): int
+    public function getPort()
     {
         return $this->port;
     }

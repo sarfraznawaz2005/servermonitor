@@ -17,23 +17,15 @@ return [
     | Server Monitor Web Route
     |--------------------------------------------------------------------------
     |
-    | Define if web interface will be enabled and route where Server Monitor
-    | will be available in your app.
+    | Define if web interface will be enabled, its route where Server Monitor
+    | will be available in your app and basic auth login details.
     |
     */
     'web_interface_enabled' => true,
     'route' => 'servermonitor',
+    'username' => 'servermonitor',
+    'password' => 'servermonitor',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Basic Http Authentication
-    |--------------------------------------------------------------------------
-    |
-    | If "true", the Server Monitor page can be viewed by any user who provides
-    | correct login information (eg all app users).
-    |
-    */
-    'http_authentication' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -85,6 +77,7 @@ return [
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
 
                 /*
+                // requires "Predis\Client" package.
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\RedisCanBeAccessed::class => [
                     'default_connection' => true,
                     'connections' => [],

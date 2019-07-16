@@ -2,18 +2,21 @@
 
 namespace Sarfraznawaz2005\ServerMonitor;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Sarfraznawaz2005\ServerMonitor\Console\CheckCommand;
 use Sarfraznawaz2005\ServerMonitor\Console\StatusCommand;
+use Sarfraznawaz2005\ServerMonitor\Http\Middleware\BasicAuth;
 
 class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Perform post-registration booting of services.
      *
+     * @param Router $router
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
         if (!$this->app->routesAreCached()) {
             require __DIR__ . '/Http/routes.php';
@@ -30,6 +33,9 @@ class ServiceProvider extends BaseServiceProvider
                 __DIR__ . '/Views' => base_path('resources/views/vendor/servermonitor'),
             ], 'servermonitor.views');
         }
+
+        // Register middleware
+        $router->aliasMiddleware('auth.basic_servermonitor', BasicAuth::class);
     }
 
     /**
