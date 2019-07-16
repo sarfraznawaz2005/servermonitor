@@ -19,6 +19,10 @@ class ServerMonitorController extends BaseController
             exit('Server Monitor is disabled!');
         }
 
+        if (!config('server-monitor.web_interface_enabled')) {
+            abort(404);
+        }
+
         if (config('server-monitor.http_authentication')) {
             $this->middleware('auth.basic');
         }

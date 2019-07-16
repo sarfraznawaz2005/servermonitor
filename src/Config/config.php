@@ -17,9 +17,11 @@ return [
     | Server Monitor Web Route
     |--------------------------------------------------------------------------
     |
-    | Define route where Server Monitor will be available in your app.
+    | Define if web interface will be enabled and route where Server Monitor
+    | will be available in your app.
     |
     */
+    'web_interface_enabled' => true,
     'route' => 'servermonitor',
 
     /*
@@ -167,7 +169,7 @@ return [
 
         /*
         |--------------------------------------------------------------------------
-        | PushOver Channel Settings
+        | Pushover Channel Settings
         |--------------------------------------------------------------------------
         */
 
