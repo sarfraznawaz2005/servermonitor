@@ -88,7 +88,7 @@ return [
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\RedisCanBeAccessed::class => [
                     'default_connection' => true,
                     'connections' => [],
-                ]
+                ],
                 */
             ],
 
@@ -205,6 +205,5 @@ return [
         'notification_pushover_user_key' => '',
         'notification_pushover_sound' => 'siren',
     ],
-
 
 ];
