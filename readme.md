@@ -61,21 +61,22 @@ None Currently.
  - Composer dependencies up to date
  - Storage directory is linked
  - The Redis cache can be accessed
- - Are certain servers pingable
- - Supervisor programs are running
 
-**Development Checks (Development)**
+**Environment Checks (Development)**
 
  - APP_DEBUG Status should be ON
  - Config Cache OFF
  - Routes Cache OFF
 
-**Development Checks (Production)**
+**Environment Checks (Production)**
 
  - APP_DEBUG Status should be OFF
  - Config Cache ON
  - Routes Cache ON
  - Unwanted PHP extensions disabled
+ - Are certain servers pingable
+ - Supervisor programs are running
+
 
 ## Commands
 
