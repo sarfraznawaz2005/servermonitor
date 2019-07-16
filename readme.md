@@ -119,7 +119,7 @@ Other than commands, you can also use Web Interface to run new checks process fo
 
 If you would like to disable Web Interface, you can set `web_interface_enabled` to `false` and now hitting web interface route would result in 404.
 
-**Getting Checks Programmatically**
+**Running/Getting Checks Programmatically**
 
 If you still would like to show status of various checks in your view in your own way, you can get status of all checks programmatically like so:
 
