@@ -47,7 +47,7 @@ The package comes with following checks out of the box. Note that checks can be 
 
 **Server Checks**
 
-None Currently.
+ - FTP Connection Works
 
 **Common Checks**
 

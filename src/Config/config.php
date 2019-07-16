@@ -49,6 +49,17 @@ return [
 
         // These checks are for server only
         'server' => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\FTPConnectionWorks::class => [
+                'servers' => [
+                    'myserver' => [
+                        'host' => 'ftp.yourdomain.com',
+                        'port' => 21,
+                        'username' => 'username',
+                        'password' => 'password',
+                        'timeout' => 90,
+                    ],
+                ]
+            ],
         ],
 
         // These checks are for application only. These checks run in order as specified here.
