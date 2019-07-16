@@ -109,6 +109,8 @@ protected function schedule(Schedule $schedule)
 
 The package provides built-in web interface. You can customize the route of web interface in config file `'route' => 'servermonitor'`. Once done, you can visit Web Interface at url `http://yourapp.com/servermonitor`. Replace `servermonitor` with route you used.
 
+Other than commands, you can also use Web Interface to run new checks process for all or individual checks.
+
 ![Screen 1](https://github.com/sarfraznawaz2005/servermonitor/blob/master/screen1.gif?raw=true)
 
 ![Screen 2](https://github.com/sarfraznawaz2005/servermonitor/blob/master/screen2.gif?raw=true)
