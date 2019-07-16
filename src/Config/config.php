@@ -134,10 +134,11 @@ return [
         'notification_enabled_on' => ['production', 'live'],
 
         // Define default notification channel
-        'notification_channel' => 'mail', // log, mail, slack, pushover
+        // Possible Value: log, mail, slack, pushover
+        'notification_channel' => 'mail',
 
-        // notification subject
-        'notification_subject' => 'Server Monitor Alert',
+        // notification title/subject
+        'notification_title' => 'Server Monitor Alert',
 
         /*
         |--------------------------------------------------------------------------
@@ -159,11 +160,10 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        'notification_slack_hook_url' => 'https://hooks.slack.com/services/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', // see: https://api.slack.com/incoming-webhooks
-        'notification_slack_channel' => '#tslapp',
-        'notification_slack_username' => 'Server Monitor',
+        'notification_slack_hook_url' => 'https://hooks.slack.com/...', // see: https://api.slack.com/incoming-webhooks
+        'notification_slack_channel' => '#myapp',
         'notification_slack_icon' => ':robot:',
-        'notification_slack_color' => 'warning',
+        'notification_slack_color' => 'danger',
 
         /*
         |--------------------------------------------------------------------------
@@ -171,8 +171,8 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        'notification_pushover_token' => 'an6fwnwim3f9qvqe34rh5ioichhmhi',
-        'notification_pushover_user' => 'ukzoafvgrurfpmgq3uunk6vq4u66s7',
+        'notification_pushover_token' => '',
+        'notification_pushover_user_key' => '',
         'notification_pushover_sound' => 'siren',
     ],
 

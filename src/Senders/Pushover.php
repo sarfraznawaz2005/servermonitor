@@ -21,26 +21,34 @@ class Pushover implements Sender
      */
     public function send(Check $check, array $config)
     {
-        $title = $config['notification_subject'] ?? config('server-monitor.notifications.notification_subject');
+        $title = $config['notification_title'] ?? config('server-monitor.notifications.notification_title');
+        $token = $config['notification_pushover_token'] ?? config('server-monitor.notifications.notification_pushover_token');
+        $userKey = $config['notification_pushover_user_key'] ?? config('server-monitor.notifications.notification_pushover_user_key');
+        $sound = $config['notification_pushover_sound'] ?? config('server-monitor.notifications.notification_pushover_sound');
+
         $name = $check->name();
         $error = $check->message();
 
         $body = "$title : $name ($error)";
 
-        curl_setopt_array($ch = curl_init(), [
-            CURLOPT_URL => 'https://api.pushover.net/1/messages.json',
-            CURLOPT_POSTFIELDS => [
-                'token' => config('server-monitor.notifications.notification_pushover_token'),
-                'user' => config('server-monitor.notifications.notification_pushover_user'),
-                'title' => $title,
-                'message' => $body,
-                'sound' => 'siren'
-            ],
-            CURLOPT_SAFE_UPLOAD => true,
-            CURLOPT_RETURNTRANSFER => true,
-        ]);
+        try {
+            curl_setopt_array($ch = curl_init(), [
+                CURLOPT_URL => 'https://api.pushover.net/1/messages.json',
+                CURLOPT_POSTFIELDS => [
+                    'token' => $token,
+                    'user' => $userKey,
+                    'title' => $title,
+                    'message' => $body,
+                    'sound' => $sound
+                ],
+                CURLOPT_SAFE_UPLOAD => true,
+                CURLOPT_RETURNTRANSFER => true,
+            ]);
 
-        curl_exec($ch);
-        curl_close($ch);
+            curl_exec($ch);
+            curl_close($ch);
+        } catch (\Exception $e) {
+            \Log::error('Server Monitor Error: ' . $e->getMessage());
+        }
     }
 }

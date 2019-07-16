@@ -22,22 +22,32 @@ class Slack implements Sender
      */
     public function send(Check $check, array $config)
     {
-        $title = $config['notification_subject'] ?? config('server-monitor.notifications.notification_subject');
+        $url = config('server-monitor.notifications.notification_slack_hook_url');
+        $title = $config['notification_title'] ?? config('server-monitor.notifications.notification_title');
+        $channel = $config['notification_slack_channel'] ?? config('server-monitor.notifications.notification_slack_channel');
+        $icon = $config['notification_slack_icon'] ?? config('server-monitor.notifications.notification_slack_icon');
+        $color = $config['notification_slack_color'] ?? config('server-monitor.notifications.notification_slack_color');
+
         $name = $check->name();
         $error = $check->message();
 
-        $body = "$title : $name ($error)";
-
-        $client = new Client(config('server-monitor.notifications.notification_slack_hook_url'));
-        $client->setDefaultUsername(config('server-monitor.notifications.notification_slack_username'));
-        $client->setDefaultIcon(config('server-monitor.notifications.notification_slack_icon'));
-
-        $client
-            ->to(config('server-monitor.notifications.notification_slack_channel'))
-            ->attach([
-                'text' => $body,
-                'color' => config('server-monitor.notifications.notification_slack_color')
-            ])
-            ->send($title);
+        try {
+            (new Client($url))
+                ->to($channel)
+                ->attach([
+                    'text' => $title,
+                    'color' => $color,
+                    'icon' => $icon,
+                    'fields' => [
+                        [
+                            'title' => $name,
+                            'value' => $error,
+                        ],
+                    ]
+                ])
+                ->send();
+        } catch (\Exception $e) {
+            \Log::error('Server Monitor Error: ' . $e->getMessage());
+        }
     }
 }

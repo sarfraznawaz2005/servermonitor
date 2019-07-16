@@ -21,7 +21,7 @@ class Log implements Sender
      */
     public function send(Check $check, array $config)
     {
-        $title = $config['notification_subject'] ?? config('server-monitor.notifications.notification_subject');
+        $title = $config['notification_title'] ?? config('server-monitor.notifications.notification_title');
         $name = $check->name();
         $error = $check->message();
 
