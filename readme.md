@@ -166,7 +166,7 @@ You can also disable alerts for individual checks like so:
 ]
 ````
 
-### Creating Your Own Custom Checks
+## Creating Your Own Custom Checks
 
 You can create custom checks, by implementing the [`Sarfraznawaz2005\ServerMonitor\Checks\Check`] interface and adding the class to the config file. Example:
 
