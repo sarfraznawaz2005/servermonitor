@@ -51,6 +51,7 @@ None Currently.
 
 **Common Checks**
 
+ - Required PHP extensions are installed
  - Correct PHP version installed
  - The environment file exists
  - APP_KEY is set
@@ -59,6 +60,9 @@ None Currently.
  - Migrations are up to date
  - Composer dependencies up to date
  - Storage directory is linked
+ - The Redis cache can be accessed
+ - Are certain servers pingable
+ - Supervisor programs are running
 
 **Development Checks (Development)**
 

@@ -65,6 +65,7 @@ return [
 
             // common checks that will run on all environments
             'common' => [
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\RequiredPhpExtensionsAreInstalled::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\CorrectPhpVersionInstalled::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\EnvFileExists::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\AppKeySet::class,
@@ -82,6 +83,13 @@ return [
                     'binary_path' => 'composer'
                 ],
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
+
+                /*
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\RedisCanBeAccessed::class => [
+                    'default_connection' => true,
+                    'connections' => [],
+                ]
+                */
             ],
 
             // Checks that will run only on non-production environments
@@ -101,6 +109,26 @@ return [
                         'xdebug',
                     ],
                 ],
+
+                /*
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ServersArePingable::class => [
+                    'servers' => [
+                        'www.google.com',
+                        ['host' => 'www.google.com', 'port' => 8080],
+                        '8.8.8.8',
+                        ['host' => '8.8.8.8', 'port' => 8080, 'timeout' => 5],
+                    ],
+                ],
+                */
+
+                /*
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\SupervisorProgramsAreRunning::class => [
+                    'programs' => [
+                        'horizon',
+                    ],
+                    'restarted_within' => 300
+                ],
+                */
             ]
         ],
     ],
