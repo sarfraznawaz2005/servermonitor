@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable / Disable
+    | Enable/Disable Server Monitor
     |--------------------------------------------------------------------------
     |
     | Enable or disable Server Monitor
@@ -14,7 +14,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Server Monitor Web Route
+    | Web Interface
     |--------------------------------------------------------------------------
     |
     | Define if web interface will be enabled, its route where Server Monitor
