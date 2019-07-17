@@ -11,7 +11,8 @@
 @section('content')
 
     @if (isset($checkResults['counts']))
-        <div class="mx-auto" style="width: 70%; font-size: 16px; background: #fff; padding: 8px; margin-top: 15px; line-height: 100%;">
+        <div class="mx-auto"
+             style="width: 70%; font-size: 16px; background: #eee; padding: 8px; margin-top: 15px; line-height: 100%;">
             <div class="float-left">
                 <span class="badge-success badge">
                 Passed: {{$checkResults['counts']['passed_checks_count']}}
@@ -40,6 +41,7 @@
             <tr>
                 <th style="text-align: center;" width="40">#</th>
                 <th>Check Name</th>
+                <th style="text-align: center;" width="50">Time</th>
                 <th style="text-align: center;" width="150">Status</th>
                 <th style="text-align: center;" width="50">Run</th>
             </tr>
@@ -48,16 +50,15 @@
             <tbody>
             @foreach($checkResults as $type => $checks)
                 <tr>
-                    <td colspan="99" align="center">
-                        <span style="font-size: 12px;" class="badge-primary badge badge-pill">
-                            {{strtoupper(str_replace('.', ' ', $type))}}
-                        </span>
+                    <td colspan="5" style="text-align: center; color:#333; background: #eee; font-size: 13px;">
+                        <strong>{{strtoupper(str_replace('.', ' ', $type))}}</strong>
                     </td>
                 </tr>
                 @foreach($checks as $index => $check)
                     <tr>
                         <td style="text-align: center; font-weight: bold;">{{++$index}}</td>
                         <td><strong>{{$check['name']}}</strong></td>
+                        <td style="text-align: center;"><strong>{{$check['time']}}</strong></td>
                         @php
                             $isOk = $check['status'] == 1;
                             $text = $isOk ? 'Passed':'Failed';
@@ -68,12 +69,12 @@
                         @endphp
                         <td style="text-align: center;">
                         <span
-                                class="btn btn-primary btn-sm refresh"
-                                data-checker="{{$check['checker']}}"
-                                data-toggle="tooltip"
-                                data-placement="top"
-                                title="Run this check"
-                                style="font-size: 10px;">
+                            class="btn btn-primary btn-sm refresh"
+                            data-checker="{{$check['checker']}}"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Run this check"
+                            style="font-size: 10px;">
                             <i class="fa fa-play" style="font-size: 14px;"></i>
                         </span>
                         </td>

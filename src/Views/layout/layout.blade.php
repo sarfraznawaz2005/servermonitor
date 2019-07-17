@@ -30,7 +30,7 @@
         }
 
         .table thead {
-            background: #eee;
+            background: #ddd;
         }
 
         .card {
