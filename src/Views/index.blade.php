@@ -57,7 +57,7 @@
                 @foreach($checks as $index => $check)
                     <tr>
                         <td style="text-align: center; font-weight: bold;">{{++$index}}</td>
-                        <td><strong>{{$check['name']}}</strong></td>
+                        <td><strong>{{ucwords($check['name'])}}</strong></td>
                         <td style="text-align: center;"><strong>{{$check['time']}}</strong></td>
                         @php
                             $isOk = $check['status'] == 1;

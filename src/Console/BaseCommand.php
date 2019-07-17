@@ -44,7 +44,7 @@ abstract class BaseCommand extends Command
                     $status = '<fg=red>FAILED</fg=red>';
                 }
 
-                $data[] = [$type, $check['name'], $status, $check['time'], $error];
+                $data[] = [$type, ucwords($check['name']), $status, $check['time'], $error];
             }
         }
 
@@ -71,7 +71,7 @@ abstract class BaseCommand extends Command
 
         $result['type'] = ucwords(str_replace('.', ' ', $result['type']));
 
-        $data[] = [$result['type'], $result['name'], $status, $result['time'], $error];
+        $data[] = [$result['type'], ucwords($result['name']), $status, $result['time'], $error];
 
         $headers = ['Check Type', 'Check Name', 'Status', 'Time', 'Error'];
 
