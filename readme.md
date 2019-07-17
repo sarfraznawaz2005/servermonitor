@@ -5,15 +5,12 @@
 
 Laravel package to periodically monitor the health of your server and application. It ships with common checks out of the box and allows you to add your own custom checks too. The packages comes with both console and web interfaces.
 
-
-
 ## Requirements
 
  - PHP >= 7+
  - Laravel 5+
 
 ## Installation
-
 
 ``` bash
 $ composer require sarfraznawaz2005/servermonitor
@@ -25,7 +22,6 @@ Add Service Provider to `config/app.php` in `providers` section
 ```php
 Sarfraznawaz2005\ServerMonitor\ServiceProvider::class,
 ```
-
 
 ---
 
@@ -63,18 +59,19 @@ The package comes with following checks out of the box. Note that checks can be 
  - :white_check_mark:  Database can be accessed
  - :white_check_mark:  Migrations are up to date
  - :white_check_mark:  Composer dependencies up to date
+ - :white_check_mark:  Check Packages Security
  - :white_check_mark:  Storage directory is linked
  - :white_check_mark:  The Redis cache can be accessed
 
 **Environment Checks (Development)**
 
- - :white_check_mark:  APP_DEBUG Status should be ON
+ - :white_check_mark:  Debug Mode ON
  - :white_check_mark:  Config Cache OFF
  - :white_check_mark:  Routes Cache OFF
 
 **Environment Checks (Production)**
 
- - :white_check_mark:  APP_DEBUG Status should be OFF
+ - :white_check_mark:  Debug Mode OFF
  - :white_check_mark:  Config Cache ON
  - :white_check_mark:  Routes Cache ON
  - :white_check_mark:  Unwanted PHP extensions disabled

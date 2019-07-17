@@ -155,14 +155,11 @@ class ServerMonitor
     /**
      * Returns check results from cache file or optionally run and return new check results
      *
-     * @param bool $refresh
      * @return array
      */
-    public function getChecks($refresh = false): array
+    public function getChecks(): array
     {
-        if ($refresh) {
-            $this->runChecks();
-        } elseif (!file_exists($this->cacheFile)) {
+        if (!file_exists($this->cacheFile)) {
             return [];
         }
 

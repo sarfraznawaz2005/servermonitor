@@ -128,6 +128,7 @@ return [
                     // Path to composer binary
                     'binary_path' => 'composer'
                 ],
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\SecurityChecker::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
 
                 /*

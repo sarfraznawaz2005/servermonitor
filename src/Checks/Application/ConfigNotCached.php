@@ -19,7 +19,7 @@ class ConfigNotCached implements Check
      */
     public function name(): string
     {
-        return 'Config Cache';
+        return 'Config Not Cached';
     }
 
     /**

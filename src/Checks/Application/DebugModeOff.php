@@ -19,7 +19,7 @@ class DebugModeOff implements Check
      */
     public function name(): string
     {
-        return 'APP_DEBUG Status';
+        return 'Debug Mode Off';
     }
 
     /**

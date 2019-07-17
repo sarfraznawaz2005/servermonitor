@@ -25,7 +25,8 @@
     "composer/semver": "^1.4",
     "maknz/slack": "~1.7",
     "geerlingguy/ping": "^1.1",
-    "league/flysystem": "^1.0"
+    "league/flysystem": "^1.0",
+    "sensiolabs/security-checker": "^6.0"
   },
   "autoload": {
     "psr-4": {

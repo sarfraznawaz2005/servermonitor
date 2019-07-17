@@ -19,7 +19,7 @@ class RoutesAreCached implements Check
      */
     public function name(): string
     {
-        return 'Routes Cache';
+        return 'Routes Cached';
     }
 
     /**
