@@ -39,9 +39,9 @@ class FTPConnectionWorks implements Check
 
             $this->servers = Collection::make(Arr::get($config, 'servers', []));
 
-            $this->servers = $this->servers->reject(function ($array) {
+            $this->servers = $this->servers->reject(static function ($array) {
 
-                $con = ftp_connect($array['host'], $array['port'] ?? null, $array['timeout'] ?? null);
+                $con = ftp_connect($array['host'], $array['port'] ?? 21, $array['timeout'] ?? 90);
 
                 if (!$con) {
                     return false;

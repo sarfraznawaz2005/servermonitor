@@ -47,35 +47,35 @@ The package comes with following checks out of the box. Note that checks can be 
 
 **Server Checks**
 
- - FTP Connection Works
+ :white_check_mark:  FTP Connection Works
 
 **Common Checks**
 
- - Required PHP extensions are installed
- - Correct PHP version installed
- - The environment file exists
- - APP_KEY is set
- - Correct Directory Permissions
- - Database can be accessed
- - Migrations are up to date
- - Composer dependencies up to date
- - Storage directory is linked
- - The Redis cache can be accessed
+ :white_check_mark:  Required PHP extensions are installed
+ :white_check_mark:  Correct PHP version installed
+ :white_check_mark:  The environment file exists
+ :white_check_mark:  APP_KEY is set
+ :white_check_mark:  Correct Directory Permissions
+ :white_check_mark:  Database can be accessed
+ :white_check_mark:  Migrations are up to date
+ :white_check_mark:  Composer dependencies up to date
+ :white_check_mark:  Storage directory is linked
+ :white_check_mark:  The Redis cache can be accessed
 
 **Environment Checks (Development)**
 
- - APP_DEBUG Status should be ON
- - Config Cache OFF
- - Routes Cache OFF
+ :white_check_mark:  APP_DEBUG Status should be ON
+ :white_check_mark:  Config Cache OFF
+ :white_check_mark:  Routes Cache OFF
 
 **Environment Checks (Production)**
 
- - APP_DEBUG Status should be OFF
- - Config Cache ON
- - Routes Cache ON
- - Unwanted PHP extensions disabled
- - Are certain servers pingable
- - Supervisor programs are running
+ :white_check_mark:  APP_DEBUG Status should be OFF
+ :white_check_mark:  Config Cache ON
+ :white_check_mark:  Routes Cache ON
+ :white_check_mark:  Unwanted PHP extensions disabled
+ :white_check_mark:  Are certain servers pingable
+ :white_check_mark:  Supervisor programs are running
 
 
 ## Commands
