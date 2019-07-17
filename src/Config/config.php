@@ -54,10 +54,29 @@ return [
                 'servers' => [
                     'myserver' => [
                         'host' => 'ftp.yourdomain.com',
-                        'port' => 21,
                         'username' => 'username',
                         'password' => 'password',
-                        'timeout' => 90,
+                        'port' => 21,
+                        'timeout' => 10,
+                        'passive' => true,
+                        'ssl' => false
+                    ],
+                ]
+            ],
+            */
+
+            /*
+            // requires "league/flysystem-sftp" package.
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SFTPConnectionWorks::class => [
+                'servers' => [
+                    'myserver' => [
+                        'host' => 'ftp.yourdomain.com',
+                        'username' => 'username',
+                        'password' => 'password',
+                        'privateKey' => 'path/to/or/contents/of/privatekey',
+                        'port' => 22,
+                        'timeout' => 10,
+                        'ssl' => false
                     ],
                 ]
             ],
@@ -91,6 +110,7 @@ return [
 
                 /*
                 // requires "Predis\Client" package.
+
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\RedisCanBeAccessed::class => [
                     'default_connection' => true,
                     'connections' => [],

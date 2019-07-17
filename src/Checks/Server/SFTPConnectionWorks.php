@@ -10,10 +10,10 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks\Server;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use League\Flysystem\Adapter\Ftp as FtpAdapter;
+use League\Flysystem\Sftp\SftpAdapter;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class FTPConnectionWorks implements Check
+class SFTPConnectionWorks implements Check
 {
     private $servers;
 
@@ -24,7 +24,7 @@ class FTPConnectionWorks implements Check
      */
     public function name(): string
     {
-        return 'FTP Connection Works';
+        return 'SFTP Connection Works';
     }
 
     /**
@@ -38,9 +38,8 @@ class FTPConnectionWorks implements Check
         $this->servers = Collection::make(Arr::get($config, 'servers', []));
 
         $this->servers = $this->servers->reject(static function ($options) {
-
             try {
-                $adapter = new FtpAdapter($options);
+                $adapter = new SftpAdapter($options);
                 $adapter->getConnection();
 
                 return true;
@@ -59,6 +58,6 @@ class FTPConnectionWorks implements Check
      */
     public function message(): string
     {
-        return "FTP connection failed for servers:\n" . $this->servers->keys()->implode(PHP_EOL);
+        return "SFTP connection failed for servers:\n" . $this->servers->keys()->implode(PHP_EOL);
     }
 }

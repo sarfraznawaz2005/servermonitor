@@ -24,7 +24,8 @@
     "illuminate/support": "~5",
     "composer/semver": "^1.4",
     "maknz/slack": "~1.7",
-    "geerlingguy/ping": "^1.1"
+    "geerlingguy/ping": "^1.1",
+    "league/flysystem": "^1.0"
   },
   "autoload": {
     "psr-4": {
@@ -38,5 +39,9 @@
       ]
     }
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "stable",
+  "suggest": {
+    "Predis/Client": "Needed for SFTP check",
+    "league/flysystem-sftp": "Needed for Redis check"
+  }
 }
