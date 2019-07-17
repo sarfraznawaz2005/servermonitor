@@ -47,8 +47,11 @@ The package comes with following checks out of the box. Note that checks can be 
 
 **Server Checks**
 
+ - :white_check_mark:  Disk Space Enough
  - :white_check_mark:  FTP Connection Works
  - :white_check_mark:  SFTP Connection Works
+ - :white_check_mark:  SSL Certificate Valid
+ - :white_check_mark:  SSH Connection Works
 
 **Common Checks**
 

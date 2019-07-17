@@ -49,6 +49,9 @@ return [
 
         // These checks are for server only
         'server' => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\DiskSpaceEnough::class => [
+                'fail_percentage' => 90
+            ],
             /*
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\FTPConnectionWorks::class => [
                 'servers' => [
@@ -79,6 +82,25 @@ return [
                         'ssl' => false
                     ],
                 ]
+            ],
+            */
+
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SSHConnectionWorks::class => [
+                'servers' => [
+                    'myserver' => [
+                        'host' => 'ftp.yourdomain.com',
+                        'username' => 'username',
+                        'port' => 22,
+                        'privateKey' => 'path/to/privatekey/file'
+                    ],
+                ]
+            ],
+            */
+
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SSLCertificateExpired::class => [
+                'url' => 'https://yourdomain.com'
             ],
             */
         ],
