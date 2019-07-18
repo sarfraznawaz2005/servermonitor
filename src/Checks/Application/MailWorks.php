@@ -101,7 +101,7 @@ class MailWorks implements Check
      */
     private function sendMail(): void
     {
-        Mail::send([], [], static function (Message $message) {
+        Mail::send([], [], function (Message $message) {
             $fromAddress = array_get($this->options['mail_config'], 'from.address');
 
             $message
