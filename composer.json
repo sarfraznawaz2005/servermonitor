@@ -42,7 +42,7 @@
   },
   "minimum-stability": "stable",
   "suggest": {
-    "Predis/Client": "Needed for SFTP check",
-    "league/flysystem-sftp": "Needed for Redis check"
+    "Predis/Client": "Needed for Redis check",
+    "league/flysystem-sftp": "Needed for SFTP check"
   }
 }

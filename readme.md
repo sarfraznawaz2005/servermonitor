@@ -43,15 +43,16 @@ The package comes with following checks out of the box. Checks can be divided in
 
 **Server Checks**
 
+ - :white_check_mark:  Required PHP extensions are installed
  - :white_check_mark:  Disk Space Enough
  - :white_check_mark:  FTP Connection Works
  - :white_check_mark:  SFTP Connection Works
  - :white_check_mark:  SSL Certificate Valid
  - :white_check_mark:  SSH Connection Works
+ - :white_check_mark:  Are servers pingable
 
 **Common Checks**
 
- - :white_check_mark:  Required PHP extensions are installed
  - :white_check_mark:  Correct PHP version installed
  - :white_check_mark:  The environment file exists
  - :white_check_mark:  APP_KEY is set
@@ -59,7 +60,7 @@ The package comes with following checks out of the box. Checks can be divided in
  - :white_check_mark:  Database can be accessed
  - :white_check_mark:  Migrations are up to date
  - :white_check_mark:  Composer dependencies up to date
- - :white_check_mark:  Check Packages Security
+ - :white_check_mark:  Check Composer Packages Security
  - :white_check_mark:  Storage directory is linked
  - :white_check_mark:  The Redis cache can be accessed
  - :white_check_mark:  Mail is Working
@@ -77,7 +78,6 @@ The package comes with following checks out of the box. Checks can be divided in
  - :white_check_mark:  Config Cache ON
  - :white_check_mark:  Routes Cache ON
  - :white_check_mark:  Unwanted PHP extensions disabled
- - :white_check_mark:  Are certain servers pingable
  - :white_check_mark:  Supervisor programs are running
 
 See `config/server-monitor.php` file for all checks. Note that some checks are commented intentionally, you can un-comment them if you need to use them.

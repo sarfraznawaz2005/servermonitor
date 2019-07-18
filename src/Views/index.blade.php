@@ -63,7 +63,7 @@
                             $isOk = $check['status'] == 1;
                             $text = $isOk ? 'Passed':'Failed';
                             $icon = $isOk ? 'success' : 'danger';
-                            $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="' . $check['error'] . '"';
+                            $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="' . wordwrap($check['error'], 50, '<br>') . '"';
 
                             echo "<td style='text-align: center;'><span style='font-size: 12px; padding-bottom:6px;' ' . $popover . ' class='col-sm-10 badge badge-$icon'>$text</span></td>";
                         @endphp

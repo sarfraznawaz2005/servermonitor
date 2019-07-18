@@ -6,7 +6,7 @@
  * Time: 2:39 PM
  */
 
-namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
+namespace Sarfraznawaz2005\ServerMonitor\Checks\Server;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;

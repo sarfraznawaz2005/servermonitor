@@ -52,6 +52,7 @@ return [
 
         // These checks are for server only
         'server' => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\RequiredPhpExtensionsAreInstalled::class,
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\DiskSpaceEnough::class => [
                 'fail_percentage' => 90
             ],
@@ -106,6 +107,19 @@ return [
                 'url' => 'https://yourdomain.com'
             ],
             */
+
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\ServersArePingable::class => [
+                'servers' => [
+                    [
+                        'host' => 'www.google.com',
+                        'port' => null,
+                        'timeout' => 5
+                    ],
+                ]
+            ],
+            */
+
         ],
 
         // These checks are for application only. These checks run in order as specified here.
@@ -114,7 +128,6 @@ return [
 
             // common checks that will run on all environments
             'common' => [
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\RequiredPhpExtensionsAreInstalled::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\CorrectPhpVersionInstalled::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\EnvFileExists::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\AppKeySet::class,
@@ -193,15 +206,6 @@ return [
                     'xdebug',
                 ],
             ],
-
-            /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\ServersArePingable::class => [
-                'servers' => [
-                    'www.google.com',
-                    ['host' => 'www.google.com', 'port' => 80],
-                ],
-            ],
-            */
 
             /*
             \Sarfraznawaz2005\ServerMonitor\Checks\Application\SupervisorProgramsAreRunning::class => [

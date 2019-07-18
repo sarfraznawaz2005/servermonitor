@@ -23,7 +23,7 @@ class SecurityChecker implements Check
      */
     public function name(): string
     {
-        return 'Check Packages Security';
+        return 'Check Composer Packages Security';
     }
 
     /**
