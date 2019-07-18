@@ -63,6 +63,7 @@ The package comes with following checks out of the box. Checks can be divided in
  - :white_check_mark:  Storage directory is linked
  - :white_check_mark:  The Redis cache can be accessed
  - :white_check_mark:  Mail is Working
+ - :white_check_mark:  Cloud Storage Works
 
 **Environment Checks (Development)**
 

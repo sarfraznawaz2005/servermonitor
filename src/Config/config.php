@@ -164,6 +164,15 @@ return [
                 ],
                 */
 
+                /*
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\CloudStorage::class => [
+                    'disks' => [
+                        's3'
+                    ],
+                    'file' => 'dummy.txt',
+                    'content' => str_random(32),
+                ],
+                */
             ],
         ],
 
