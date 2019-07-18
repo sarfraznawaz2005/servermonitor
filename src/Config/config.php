@@ -42,7 +42,10 @@ return [
     | Application & Server Checks
     |--------------------------------------------------------------------------
     |
-    | Define checks for server and application that will be performed
+    | Define checks for server and application that will be performed.
+    |
+    | Some checks are commented intentionally, you can un-comment them if
+    | you need to use them.
     |
     */
     'checks' => [
@@ -139,45 +142,67 @@ return [
                     'connections' => [],
                 ],
                 */
-            ],
-
-            // Checks that will run only on non-production environments
-            'development' => [
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOn::class,
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigNotCached::class,
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreNotCached::class,
-            ],
-
-            // Checks that will run only on production environment
-            'production' => [
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOff::class,
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigCached::class,
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreCached::class,
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\PhpExtensionsAreDisabled::class => [
-                    'extensions' => [
-                        'xdebug',
-                    ],
-                ],
 
                 /*
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ServersArePingable::class => [
-                    'servers' => [
-                        'www.google.com',
-                        ['host' => 'www.google.com', 'port' => 80],
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\MailWorks::class => [
+                    'mail_config' => [
+                        'driver' => config('mail.driver'),
+                        'host' => config('mail.host'),
+                        'port' => config('mail.port'),
+                        'from' => [
+                            'address' => config('mail.from.address'),
+                            'name' => config('mail.from.name'),
+                        ],
+                        'encryption' => config('mail.encryption'),
+                        'username' => config('mail.username'),
+                        'password' => config('mail.password'),
+                        'sendmail' => config('mail.sendmail'),
                     ],
+                    'to' => 'someone@example.com',
+                    'subject' => 'Server Monitor Test Mail',
+                    'content' => 'Hello World!',
                 ],
                 */
 
-                /*
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\SupervisorProgramsAreRunning::class => [
-                    'programs' => [
-                        'horizon',
-                    ],
-                    'restarted_within' => 300
-                ],
-                */
-            ]
+            ],
         ],
+
+        // Checks that will run only on non-production environments
+        'development' => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOn::class,
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigNotCached::class,
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreNotCached::class,
+        ],
+
+        // Checks that will run only on production environment
+        'production' => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOff::class,
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigCached::class,
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreCached::class,
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\PhpExtensionsAreDisabled::class => [
+                'extensions' => [
+                    'xdebug',
+                ],
+            ],
+
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\ServersArePingable::class => [
+                'servers' => [
+                    'www.google.com',
+                    ['host' => 'www.google.com', 'port' => 80],
+                ],
+            ],
+            */
+
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\SupervisorProgramsAreRunning::class => [
+                'programs' => [
+                    'horizon',
+                ],
+                'restarted_within' => 300
+            ],
+            */
+        ]
     ],
 
     /*

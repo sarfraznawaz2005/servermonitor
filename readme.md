@@ -35,7 +35,7 @@ See `config/server-monitor.php` config file to customize checks, notifications a
 
 ## Built-in Checks
 
-The package comes with following checks out of the box. Note that checks can be divided into three categories:
+The package comes with following checks out of the box. Checks can be divided into three categories:
 
  - **Server Checks:** Checks that are related to your server only.
  - **Common Checks:** Checks that are related to your application only but are common in nature irrespective of which environment your application is running on. These checks run on all environments.
@@ -62,6 +62,7 @@ The package comes with following checks out of the box. Note that checks can be 
  - :white_check_mark:  Check Packages Security
  - :white_check_mark:  Storage directory is linked
  - :white_check_mark:  The Redis cache can be accessed
+ - :white_check_mark:  Mail is Working
 
 **Environment Checks (Development)**
 
@@ -77,6 +78,8 @@ The package comes with following checks out of the box. Note that checks can be 
  - :white_check_mark:  Unwanted PHP extensions disabled
  - :white_check_mark:  Are certain servers pingable
  - :white_check_mark:  Supervisor programs are running
+
+See `config/server-monitor.php` file for all checks. Note that some checks are commented intentionally, you can un-comment them if you need to use them.
 
 
 ## Commands
