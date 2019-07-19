@@ -30,7 +30,7 @@
             <div class="clearfix"></div>
         </div>
 
-        @php unset($checkResults['counts']) @endphp
+        <?php unset($checkResults['counts']) ?>
     @endif
 
     <div class="table-responsive-sm">
@@ -59,14 +59,14 @@
                         <td style="text-align: center; font-weight: bold;">{{++$index}}</td>
                         <td><strong>{{ucwords($check['name'])}}</strong></td>
                         <td style="text-align: center;"><strong>{{$check['time']}}</strong></td>
-                        @php
-                            $isOk = $check['status'] == 1;
-                            $text = $isOk ? 'Passed':'Failed';
-                            $icon = $isOk ? 'success' : 'danger';
-                            $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="' . $check['error'] . '"';
+                        <?php
+                        $isOk = $check['status'] == 1;
+                        $text = $isOk ? 'Passed':'Failed';
+                        $icon = $isOk ? 'success' : 'danger';
+                        $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="' . $check['error'] . '"';
 
-                            echo "<td style='text-align: center;'><span style='font-size: 12px; padding-bottom:6px;' ' . $popover . ' class='col-sm-10 badge badge-$icon'>$text</span></td>";
-                        @endphp
+                        echo "<td style='text-align: center;'><span style='font-size: 12px; padding-bottom:6px;' ' . $popover . ' class='col-sm-10 badge badge-$icon'>$text</span></td>";
+                        ?>
                         <td style="text-align: center;">
                         <span
                             class="btn btn-primary btn-sm refresh"
