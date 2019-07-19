@@ -24,7 +24,7 @@
         "illuminate/support": "~5",
         "league/flysystem": "^1.0",
         "composer/semver": "^1.4",
-        "maknz/slack": "~1.7",
+         "maknz/slack": "~1.7",
         "geerlingguy/ping": "^1.1",
         "sensiolabs/security-checker": "^6.0"
     },
