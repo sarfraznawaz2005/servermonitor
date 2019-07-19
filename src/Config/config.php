@@ -52,10 +52,15 @@ return [
 
         // These checks are for server only
         'server' => [
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\RequiredPhpExtensionsAreInstalled::class,
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\DiskSpaceEnough::class => [
                 'fail_percentage' => 90
             ],
+
+            /*
+            // requires "sensiolabs/security-checker" package.
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\RequiredPhpExtensionsAreInstalled::class,
+            */
+
             /*
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\FTPConnectionWorks::class => [
                 'servers' => [

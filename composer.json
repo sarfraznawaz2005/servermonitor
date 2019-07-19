@@ -25,8 +25,7 @@
         "league/flysystem": "^1.0",
         "composer/semver": "^1.4",
         "maknz/slack": "~1.7",
-        "geerlingguy/ping": "^1.1",
-        "sensiolabs/security-checker": "^6.0"
+        "geerlingguy/ping": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -42,6 +41,7 @@
     },
     "minimum-stability": "stable",
     "suggest": {
+        "sensiolabs/security-checker": "Needed for security check of composer packages.",
         "Predis/Client": "Needed for Redis check",
         "league/flysystem-sftp": "Needed for SFTP check"
     }
