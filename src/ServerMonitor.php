@@ -73,9 +73,17 @@ class ServerMonitor
 
                     $sTime = microtime(true);
                     $object = app()->make($check);
-                    $status = $object->check($config);
+
                     $name = $object->name();
-                    $error = $object->message();
+
+                    try {
+                        $status = $object->check($config);
+                        $error = $object->message();
+                    } catch (\Exception $e) {
+                        $status = false;
+                        $error = $object->message();
+                    }
+
                     $eTime = round(microtime(true) - $sTime, 2);
 
                     if ($status) {
