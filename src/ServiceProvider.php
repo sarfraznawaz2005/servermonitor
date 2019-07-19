@@ -35,7 +35,11 @@ class ServiceProvider extends BaseServiceProvider
         }
 
         // Register middleware
-        $router->aliasMiddleware('auth.basic_servermonitor', BasicAuth::class);
+        if (method_exists($router, 'aliasMiddleware')) {
+            $router->aliasMiddleware('auth.basic_servermonitor', BasicAuth::class);
+        } else {
+            $router->middleware('auth.basic_servermonitor', BasicAuth::class);
+        }
     }
 
     /**
