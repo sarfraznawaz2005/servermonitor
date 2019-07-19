@@ -23,7 +23,6 @@
         "php": "^7.0",
         "illuminate/support": "~5",
         "league/flysystem": "^1.0",
-        "symfony/process": "~2|~3|~4",
         "composer/semver": "^1.4",
         "maknz/slack": "~1.7",
         "geerlingguy/ping": "^1.1",
