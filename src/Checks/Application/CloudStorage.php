@@ -70,6 +70,6 @@ class CloudStorage implements Check
      */
     public function message(): string
     {
-        return "Cloud Storage failed for:\n" . $this->disks->keys()->implode(PHP_EOL);
+        return "Cloud Storage failed for:\n" . $this->disks->implode(PHP_EOL);
     }
 }
