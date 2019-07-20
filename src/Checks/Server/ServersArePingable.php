@@ -70,7 +70,7 @@ class ServersArePingable implements Check
             $port = $server['port'] ?? 'n/a';
             $timeout = $server['timeout'];
 
-            return "Server $host:$port is not reachable (timeout after {$timeout}s).";
+            return "Server $host:$port is not reachable (timeout {$timeout}s).";
         })->implode(PHP_EOL);
     }
 }

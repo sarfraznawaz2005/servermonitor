@@ -8,7 +8,7 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Server;
 
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
 class SSLCertificateExpired implements Check

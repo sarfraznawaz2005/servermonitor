@@ -52,7 +52,7 @@ class MailWorks implements Check
      * Configure mail for testing.
      * @param $config
      */
-    private function configureMail($config): void
+    private function configureMail($config)
     {
         $this->options = $config;
 
@@ -91,7 +91,7 @@ class MailWorks implements Check
     /**
      * Restore mail configuration.
      */
-    private function restoreMailConfiguration(): void
+    private function restoreMailConfiguration()
     {
         config(['mail' => $this->mailConfiguration]);
     }
@@ -99,7 +99,7 @@ class MailWorks implements Check
     /**
      * Send a test e-mail message.
      */
-    private function sendMail(): void
+    private function sendMail()
     {
         Mail::send([], [], function (Message $message) {
             $fromAddress = array_get($this->options['mail_config'], 'from.address');
