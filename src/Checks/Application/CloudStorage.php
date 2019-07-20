@@ -38,17 +38,15 @@ class CloudStorage implements Check
         $this->disks = Collection::make(Arr::get($config, 'disks', []));
 
         $this->disks = $this->disks->reject(static function ($disk) use ($config) {
-            $options = config("filesystems.disks.$disk");
-            $driver = $options['driver'];
             $file = $config['file'];
             $content = $config['content'];
 
             try {
-                Storage::disk($driver)->put($file, $content);
+                Storage::disk($disk)->put($file, $content);
 
-                $contents = Storage::disk($driver)->get($file);
+                $contents = Storage::disk($disk)->get($file);
 
-                Storage::disk($driver)->delete($file);
+                Storage::disk($disk)->delete($file);
 
                 if ($contents !== $content) {
                     return false;

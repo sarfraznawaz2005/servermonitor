@@ -105,10 +105,6 @@ class MailWorks implements Check
             $fromAddress = array_get($this->options['mail_config'], 'from.address');
 
             $message
-                ->returnPath($fromAddress)
-                ->cc($fromAddress)
-                ->bcc($fromAddress)
-                ->replyTo($fromAddress)
                 ->from($fromAddress)
                 ->to($this->options['to'])
                 ->subject($this->options['subject'])
