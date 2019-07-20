@@ -193,34 +193,34 @@ return [
                 ],
                 */
             ],
-        ],
 
-        // Checks that will run only on non-production environments
-        'development' => [
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOn::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigNotCached::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreNotCached::class,
-        ],
-
-        // Checks that will run only on production environment
-        'production' => [
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOff::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigCached::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreCached::class,
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\PhpExtensionsAreDisabled::class => [
-                'extensions' => [
-                    'xdebug',
-                ],
+            // Checks that will run only on non-production environments
+            'development' => [
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOn::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigNotCached::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreNotCached::class,
             ],
 
-            /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\SupervisorProgramsAreRunning::class => [
-                'programs' => [
-                    'horizon',
+            // Checks that will run only on production environment
+            'production' => [
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOff::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigCached::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreCached::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\PhpExtensionsAreDisabled::class => [
+                    'extensions' => [
+                        'xdebug',
+                    ],
                 ],
-                'restarted_within' => 300
-            ],
-            */
+
+                /*
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\SupervisorProgramsAreRunning::class => [
+                    'programs' => [
+                        'horizon',
+                    ],
+                    'restarted_within' => 300
+                ],
+                */
+            ]
         ]
     ],
 
