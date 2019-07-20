@@ -16,7 +16,7 @@ class ServerMonitor
 
     public function __construct()
     {
-        $this->cacheFile = storage_path('sm_checks.cache');
+        $this->cacheFile = storage_path('servermonitor.cache');
     }
 
     /**
