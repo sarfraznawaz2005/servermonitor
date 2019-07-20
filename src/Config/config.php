@@ -121,6 +121,14 @@ return [
             ],
             */
 
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Application\StatusCode::class => [
+                'sites' => [
+                    'google' => ['url' => 'http://google.com', 'expected_code' => 200],
+                ]
+            ],
+            */
+
         ],
 
         // These checks are for application only. These checks run in order as specified here.
@@ -190,14 +198,6 @@ return [
                     ],
                     'file' => 'dummy.txt',
                     'content' => str_random(32),
-                ],
-                */
-
-                /*
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\StatusCode::class => [
-                    'sites' => [
-                        'google' => ['url' => 'http://google.com', 'expected_code' => 200],
-                    ]
                 ],
                 */
             ],

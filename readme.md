@@ -50,6 +50,7 @@ The package comes with following checks out of the box. Checks can be divided in
  - :white_check_mark:  SSL Certificate Valid
  - :white_check_mark:  SSH Connection Works
  - :white_check_mark:  Are servers pingable
+ - :white_check_mark:  Check HTTP Status Code
 
 **Common Checks**
 
@@ -65,7 +66,6 @@ The package comes with following checks out of the box. Checks can be divided in
  - :white_check_mark:  The Redis cache can be accessed
  - :white_check_mark:  Mail is Working
  - :white_check_mark:  Cloud Storage Works
- - :white_check_mark:  Check HTTP Status Code
 
 **Environment Checks (Development)**
 
