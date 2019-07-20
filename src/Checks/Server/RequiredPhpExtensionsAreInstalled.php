@@ -32,7 +32,7 @@ class RequiredPhpExtensionsAreInstalled implements Check
      */
     public function name(): string
     {
-        return 'The required PHP extensions are installed';
+        return 'Required PHP extensions are installed';
     }
 
     /**

@@ -40,7 +40,7 @@ abstract class BaseCommand extends Command
                 if ($check['status']) {
                     $status = '<fg=green>PASSED</fg=green>';
                 } else {
-                    $error = wordwrap($check['error'], 50);
+                    $error = wordwrap($check['error'], 75);
                     $status = '<fg=red>FAILED</fg=red>';
                 }
 
@@ -65,7 +65,7 @@ abstract class BaseCommand extends Command
         if ($result['status']) {
             $status = '<fg=green>PASSED</fg=green>';
         } else {
-            $error = wordwrap($result['error'], 50);
+            $error = wordwrap($result['error'], 75);
             $status = '<fg=red>FAILED</fg=red>';
         }
 
