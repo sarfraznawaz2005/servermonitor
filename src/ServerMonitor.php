@@ -38,11 +38,11 @@ class ServerMonitor
      */
     public function getCheckClasses(): array
     {
-        $key = 'application.' . config('app.env') . '.checks';
+        $key = 'application.' . config('app.env');
         $env = $this->isProduction() ? 'production' : 'development';
 
-        $serverChecks['server.checks'] = config('server-monitor.checks.server');
-        $commonChecks['application.common.checks'] = config('server-monitor.checks.application.common');
+        $serverChecks['server'] = config('server-monitor.checks.server');
+        $commonChecks['application.common'] = config('server-monitor.checks.application.common');
         $envChecks[$key] = config("server-monitor.checks.application.$env");
 
         return array_filter(array_merge($serverChecks, $commonChecks, $envChecks));
