@@ -16,16 +16,6 @@ class DiskSpaceEnough implements Check
     private $percent;
 
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Disk Space Enough';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

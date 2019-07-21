@@ -20,16 +20,6 @@ class ServersArePingable implements Check
     protected $servers;
 
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Servers are pingable';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

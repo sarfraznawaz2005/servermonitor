@@ -81,9 +81,6 @@ The package comes with following checks out of the box. Checks can be divided in
  - :white_check_mark:  Unwanted PHP extensions disabled
  - :white_check_mark:  Supervisor programs are running
 
-See `config/server-monitor.php` file for all checks. Note that some checks are commented intentionally, you can un-comment them if you need to use them.
-
-
 ## Commands
 
 The package comes with two commands:
@@ -144,6 +141,30 @@ dump($checkResults);
 
 You can also run check(s) programmatically (`$sm->runChecks()`), see available methods in file: `vendor/Sarfraznawaz2005/ServerMonitor/src/ServerMonitor.php`
 
+# Customization
+
+See `config/server-monitor.php` file for all checks. Note that some checks are commented intentionally, you can un-comment them if you need to use them.
+
+You can also customize check name that displays up in console/web interface by passing `name` config value like this:
+
+````php
+\Sarfraznawaz2005\ServerMonitor\Checks\Application\AppKeySet::class => [
+    'name' => 'Check if APP_KEY is set',
+],
+````
+
+If you don't pass `name` key, it will be made out of class name, in above case `App Key Set` by automatically converting "PascalCase" to "Pascal Case" from class name.
+
+Each check may also require some config options such as:
+
+````php
+\Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerDependenciesUpToDate::class => [
+    'binary_path' => 'composer'
+],
+````
+
+For above check to work, you must provide `binary_path` value for example.
+
 ## Alert Configuration
 
 You can get notified ***when a check fails***. Package supports these alert/notification channels: 
@@ -181,16 +202,6 @@ use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
 class MyCheck implements Check
 {
-    /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'My Custom Check';
-    }
-
     /**
      * Perform the actual verification of this check.
      *

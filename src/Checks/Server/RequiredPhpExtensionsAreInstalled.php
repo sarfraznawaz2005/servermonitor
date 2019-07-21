@@ -26,16 +26,6 @@ class RequiredPhpExtensionsAreInstalled implements Check
     }
 
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Required PHP extensions are installed';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

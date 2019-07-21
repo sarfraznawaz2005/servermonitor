@@ -13,16 +13,6 @@ use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 class ConfigCached implements Check
 {
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Config Cached';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

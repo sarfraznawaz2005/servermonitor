@@ -58,7 +58,7 @@
                     <tr>
                         <td style="text-align: center; font-weight: bold;">{{++$index}}</td>
                         <td><strong>{{ucwords($check['name'])}}</strong></td>
-                        <td style="text-align: center;"><strong>{{$check['time']}}</strong></td>
+                        <td style="text-align: center;">{{$check['time']}}</td>
                         <?php
                         $isOk = $check['status'] == 1;
                         $text = $isOk ? 'Passed':'Failed';

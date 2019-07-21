@@ -13,16 +13,6 @@ use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 class AppKeySet implements Check
 {
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'APP_KEY is set';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

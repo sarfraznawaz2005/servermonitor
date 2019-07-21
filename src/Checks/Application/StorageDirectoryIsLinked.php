@@ -21,16 +21,6 @@ class StorageDirectoryIsLinked implements Check
     }
 
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Storage directory is linked';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

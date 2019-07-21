@@ -11,20 +11,10 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 use SensioLabs\Security\SecurityChecker as SensioLabsSecurityChecker;
 
-class SecurityChecker implements Check
+class ComposerPackagesSecurity implements Check
 {
     private $problems;
     private $error;
-
-    /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Check Composer Packages Security';
-    }
 
     /**
      * Perform the actual verification of this check.

@@ -8,22 +8,13 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class DBCanBeAccessed implements Check
+class UnwantedPhpExtensionsAreDisabled implements Check
 {
-    private $error;
-
-    /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Database can be accessed';
-    }
+    private $extensions;
 
     /**
      * Perform the actual verification of this check.
@@ -33,15 +24,13 @@ class DBCanBeAccessed implements Check
      */
     public function check(array $config): bool
     {
-        try {
-            DB::connection(config('database.default'))->getPdo();
+        $this->extensions = Collection::make(Arr::get($config, 'extensions', []));
 
-            return true;
-        } catch (\Exception $e) {
-            $this->error = $e->getMessage();
-        }
+        $this->extensions = $this->extensions->reject(static function ($ext) {
+            return extension_loaded($ext) === false;
+        });
 
-        return false;
+        return $this->extensions->isEmpty();
     }
 
     /**
@@ -51,6 +40,6 @@ class DBCanBeAccessed implements Check
      */
     public function message(): string
     {
-        return "The database can not be accessed:\n" . $this->error;
+        return "The following extensions are not disabled:\n" . $this->extensions->implode(PHP_EOL);
     }
 }

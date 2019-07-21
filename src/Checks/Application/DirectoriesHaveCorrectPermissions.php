@@ -28,16 +28,6 @@ class DirectoriesHaveCorrectPermissions implements Check
     }
 
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Correct Directory Permissions';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

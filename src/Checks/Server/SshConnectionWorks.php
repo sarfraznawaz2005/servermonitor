@@ -13,20 +13,10 @@ use Illuminate\Support\Collection;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 use Symfony\Component\Process\Process;
 
-class SSHConnectionWorks implements Check
+class SshConnectionWorks implements Check
 {
     private $servers;
     private $error;
-
-    /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'SSH Connection Works';
-    }
 
     /**
      * Perform the actual verification of this check.

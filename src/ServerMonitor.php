@@ -74,8 +74,6 @@ class ServerMonitor
                     $sTime = microtime(true);
                     $object = app()->make($check);
 
-                    $name = $object->name();
-
                     try {
                         $status = $object->check($config);
                         $error = $object->message();
@@ -84,7 +82,7 @@ class ServerMonitor
                         $error = $object->message();
                     }
 
-                    $eTime = round(microtime(true) - $sTime, 2);
+                    $eTime = number_format((microtime(true) - $sTime) * 1000, 2);
 
                     if ($status) {
                         $passedChecksCount++;
@@ -95,10 +93,10 @@ class ServerMonitor
                     $results[] = [
                         'type' => $type,
                         'checker' => $this->getClassName($check),
-                        'name' => $name,
+                        'name' => $config['name'] ?? $this->normalizeName($this->getClassName($check)),
                         'status' => $status,
                         'error' => $error,
-                        'time' => sprintf("%ds", $eTime),
+                        'time' => sprintf("%dms", $eTime),
                     ];
                 }
             }
@@ -140,17 +138,16 @@ class ServerMonitor
                         $sTime = microtime(true);
                         $object = app()->make($check);
                         $status = $object->check($config);
-                        $name = $object->name();
                         $error = $object->message();
-                        $eTime = round(microtime(true) - $sTime, 2);
+                        $eTime = number_format((microtime(true) - $sTime) * 1000, 2);
 
                         return [
                             'type' => $type,
                             'checker' => $check,
-                            'name' => $name,
+                            'name' => $config['name'] ?? $this->normalizeName($this->getClassName($check)),
                             'status' => $status,
                             'error' => $error,
-                            'time' => sprintf("%ds", $eTime),
+                            'time' => sprintf("%dms", $eTime),
                         ];
                     }
                 }
@@ -199,5 +196,16 @@ class ServerMonitor
         $path = explode('\\', $namespace);
 
         return array_pop($path);
+    }
+
+    /**
+     * Converts "PascalCase" to "Pascal Case"
+     *
+     * @param $name
+     * @return string
+     */
+    protected function normalizeName($name)
+    {
+        return ucwords(strtolower(preg_replace('/(?<!^)[A-Z]/', ' $0', $name)));
     }
 }

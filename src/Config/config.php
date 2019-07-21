@@ -58,7 +58,7 @@ return [
             ],
 
             /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\FTPConnectionWorks::class => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\FtpConnectionWorks::class => [
                 'servers' => [
                     'myserver' => [
                         'host' => 'ftp.yourdomain.com',
@@ -75,7 +75,7 @@ return [
 
             /*
             // requires "league/flysystem-sftp" package.
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SFTPConnectionWorks::class => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SftpConnectionWorks::class => [
                 'servers' => [
                     'myserver' => [
                         'host' => 'ftp.yourdomain.com',
@@ -91,7 +91,7 @@ return [
             */
 
             /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SSHConnectionWorks::class => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SshConnectionWorks::class => [
                 'servers' => [
                     'myserver' => [
                         'host' => 'ftp.yourdomain.com',
@@ -104,7 +104,7 @@ return [
             */
 
             /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SSLCertificateExpired::class => [
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SslCertificateValid::class => [
                 'url' => 'https://yourdomain.com'
             ],
             */
@@ -121,8 +121,8 @@ return [
             ],
             */
 
-            /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Application\StatusCode::class => [
+           /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\HttpStatusCode::class => [
                 'sites' => [
                     'google' => ['url' => 'http://google.com', 'expected_code' => 200],
                 ]
@@ -147,7 +147,7 @@ return [
                         base_path('bootstrap/cache'),
                     ]
                 ],
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DBCanBeAccessed::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\DatabaseCanBeAccessed::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\MigrationsAreUpToDate::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerDependenciesUpToDate::class => [
                     // Path to composer binary
@@ -156,7 +156,7 @@ return [
 
                 /*
                 // requires "sensiolabs/security-checker" package.
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\SecurityChecker::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerPackagesSecurity::class,
                 */
 
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
@@ -214,7 +214,7 @@ return [
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\DebugModeOff::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ConfigCached::class,
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\RoutesAreCached::class,
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\PhpExtensionsAreDisabled::class => [
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\UnwantedPhpExtensionsAreDisabled::class => [
                     'extensions' => [
                         'xdebug',
                     ],

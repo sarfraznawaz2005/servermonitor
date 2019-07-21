@@ -18,16 +18,6 @@ class MailWorks implements Check
     private $options;
 
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Mail is Working';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

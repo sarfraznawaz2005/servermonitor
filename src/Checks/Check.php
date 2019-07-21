@@ -11,13 +11,6 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks;
 interface Check
 {
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string;
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

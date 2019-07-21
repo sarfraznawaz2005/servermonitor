@@ -13,19 +13,9 @@ use Illuminate\Support\Collection;
 use League\Flysystem\Adapter\Ftp as FtpAdapter;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class FTPConnectionWorks implements Check
+class FtpConnectionWorks implements Check
 {
     private $servers;
-
-    /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'FTP Connection Works';
-    }
 
     /**
      * Perform the actual verification of this check.

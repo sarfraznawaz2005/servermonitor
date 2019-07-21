@@ -8,10 +8,13 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
+use Illuminate\Support\Facades\DB;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class DebugModeOn implements Check
+class DatabaseCanBeAccessed implements Check
 {
+    private $error;
+
     /**
      * Perform the actual verification of this check.
      *
@@ -20,7 +23,15 @@ class DebugModeOn implements Check
      */
     public function check(array $config): bool
     {
-        return config('app.debug');
+        try {
+            DB::connection(config('database.default'))->getPdo();
+
+            return true;
+        } catch (\Exception $e) {
+            $this->error = $e->getMessage();
+        }
+
+        return false;
     }
 
     /**
@@ -30,6 +41,6 @@ class DebugModeOn implements Check
      */
     public function message(): string
     {
-        return 'The APP_DEBUG should be TRUE in non-production environment.';
+        return "The database can not be accessed:\n" . $this->error;
     }
 }

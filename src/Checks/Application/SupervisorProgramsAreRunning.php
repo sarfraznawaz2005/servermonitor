@@ -23,16 +23,6 @@ class SupervisorProgramsAreRunning implements Check
     const REGEX_SUPERVISORCTL_STATUS = '/^(\S+)\s+RUNNING\s+pid\s+(\d+),\s+uptime\s+(\d+):(\d+):(\d+)$/';
 
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'All supervisor programs are running';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

@@ -11,7 +11,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Senders;
 use Maknz\Slack\Client;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class Slack implements Sender
+class Slack extends BaseSender implements Sender
 {
     /**
      * Sends notificatin/alert message.
@@ -28,7 +28,7 @@ class Slack implements Sender
         $icon = $config['notification_slack_icon'] ?? config('server-monitor.notifications.notification_slack_icon');
         $color = $config['notification_slack_color'] ?? config('server-monitor.notifications.notification_slack_color');
 
-        $name = $check->name();
+        $name = $this->getName($check, $config);
         $error = $check->message();
 
         try {

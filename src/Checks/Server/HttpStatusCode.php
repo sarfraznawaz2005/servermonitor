@@ -10,22 +10,11 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks\Server;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
-use League\Flysystem\Sftp\SftpAdapter;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class SFTPConnectionWorks implements Check
+class HttpStatusCode implements Check
 {
-    private $servers;
-
-    /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'SFTP Connection Works';
-    }
+    private $sites;
 
     /**
      * Perform the actual verification of this check.
@@ -35,20 +24,23 @@ class SFTPConnectionWorks implements Check
      */
     public function check(array $config): bool
     {
-        $this->servers = Collection::make(Arr::get($config, 'servers', []));
+        $this->sites = Collection::make(Arr::get($config, 'sites', []));
 
-        $this->servers = $this->servers->reject(static function ($options) {
+        $this->sites = $this->sites->reject(static function ($site) {
             try {
-                $adapter = new SftpAdapter($options);
-                $adapter->getConnection();
 
-                return true;
+                $headers = get_headers($site['url']);
+
+                preg_match('/HTTP\/.* ([0-9]+) .*/', $headers[0], $status);
+
+                return ($status[1] == $site['expected_code']);
+
             } catch (\Exception $e) {
                 return false;
             }
         });
 
-        return $this->servers->isEmpty();
+        return $this->sites->isEmpty();
     }
 
     /**
@@ -58,6 +50,6 @@ class SFTPConnectionWorks implements Check
      */
     public function message(): string
     {
-        return "SFTP connection failed for servers:\n" . $this->servers->keys()->implode(PHP_EOL);
+        return "Intended HTTP status code failed for :\n" . $this->sites->keys()->implode(PHP_EOL);
     }
 }

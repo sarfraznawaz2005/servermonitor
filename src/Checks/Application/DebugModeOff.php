@@ -13,16 +13,6 @@ use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 class DebugModeOff implements Check
 {
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Debug Mode Off';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

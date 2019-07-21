@@ -11,7 +11,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Checks\Server;
 use Carbon\Carbon;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class SSLCertificateExpired implements Check
+class SslCertificateValid implements Check
 {
     /**  @var array */
     protected $certificateInfo;
@@ -31,15 +31,6 @@ class SSLCertificateExpired implements Check
     /**  @var string */
     protected $url;
 
-    /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'SSL Certificate Valid';
-    }
 
     /**
      * Perform the actual verification of this check.

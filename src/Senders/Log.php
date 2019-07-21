@@ -10,7 +10,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Senders;
 
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class Log implements Sender
+class Log extends BaseSender implements Sender
 {
     /**
      * Sends notificatin/alert message.
@@ -22,7 +22,7 @@ class Log implements Sender
     public function send(Check $check, array $config)
     {
         $title = $config['notification_title'] ?? config('server-monitor.notifications.notification_title');
-        $name = $check->name();
+        $name = $this->getName($check, $config);
         $error = $check->message();
 
         $body = "$title : $name ($error)";

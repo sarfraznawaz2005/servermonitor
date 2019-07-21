@@ -18,16 +18,6 @@ class CloudStorage implements Check
     private $disks;
 
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Cloud Storage Works';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

@@ -13,16 +13,6 @@ use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 class ComposerDependenciesUpToDate implements Check
 {
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'Composer dependencies up to date';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config

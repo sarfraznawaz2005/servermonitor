@@ -17,16 +17,6 @@ class RedisCanBeAccessed implements Check
     private $error;
 
     /**
-     * The name of the check.
-     *
-     * @return string
-     */
-    public function name(): string
-    {
-        return 'The Redis cache can be accessed';
-    }
-
-    /**
      * Perform the actual verification of this check.
      *
      * @param array $config
