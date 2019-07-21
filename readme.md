@@ -155,7 +155,7 @@ You can also customize check name that displays up in console/web interface by p
 
 If you don't pass `name` key, it will be made out of class name, in above case `App Key Set` by automatically converting "PascalCase" to "Pascal Case" from class name.
 
-Each check may also require some config options such as:
+Some checks may require additional config options such as:
 
 ````php
 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerDependenciesUpToDate::class => [
