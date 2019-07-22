@@ -91,19 +91,6 @@ return [
             */
 
             /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\SshConnectionWorks::class => [
-                'servers' => [
-                    'myserver' => [
-                        'host' => 'ftp.yourdomain.com',
-                        'username' => 'username',
-                        'port' => 22,
-                        'privateKey' => 'path/to/privatekey/file'
-                    ],
-                ]
-            ],
-            */
-
-            /*
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\SslCertificateValid::class => [
                 'url' => 'https://yourdomain.com'
             ],

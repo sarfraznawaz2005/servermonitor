@@ -48,7 +48,6 @@ The package comes with following checks out of the box. Checks can be divided in
  - :white_check_mark:  FTP Connection Works
  - :white_check_mark:  SFTP Connection Works
  - :white_check_mark:  SSL Certificate Valid
- - :white_check_mark:  SSH Connection Works
  - :white_check_mark:  Are servers pingable
  - :white_check_mark:  Check HTTP Status Code
 

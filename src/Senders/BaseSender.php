@@ -10,7 +10,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Senders;
 
 abstract class BaseSender
 {
-    protected function getName($namespace, $config)
+    protected function getName($namespace, $config): string
     {
         return $config['name'] ?? $this->normalizeName($this->getClassName($namespace));
     }
@@ -34,7 +34,7 @@ abstract class BaseSender
      * @param $name
      * @return string
      */
-    protected function normalizeName($name)
+    protected function normalizeName($name): string
     {
         return ucwords(strtolower(preg_replace('/(?<!^)[A-Z]/', ' $0', $name)));
     }

@@ -204,7 +204,7 @@ class ServerMonitor
      * @param $name
      * @return string
      */
-    protected function normalizeName($name)
+    protected function normalizeName($name): string
     {
         return ucwords(strtolower(preg_replace('/(?<!^)[A-Z]/', ' $0', $name)));
     }
