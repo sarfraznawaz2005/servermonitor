@@ -16,7 +16,7 @@
 
     @if (isset($checkResults['counts']))
         <div class="mx-auto"
-             style="width: 65%; font-size: 16px; background: #eee; padding: 8px; margin-top: 15px; line-height: 100%;">
+             style="width: 70%; font-size: 16px; background: #eee; padding: 10px; margin-top: 15px; line-height: 100%;">
             <div class="float-left">
                 <span class="badge-success badge">
                 Passed: {{$checkResults['counts']['passed_checks_count']}}
@@ -40,7 +40,7 @@
     <div class="table-responsive-sm">
         <table class="table table-hover table-bordered table-sm mx-auto"
                cellspacing="0"
-               style="font-size: 14px; color: #555; width: 65%;">
+               style="font-size: 14px; color: #555; width: 70%;">
             <thead>
             <tr>
                 <th style="text-align: center;" width="40">#</th>
