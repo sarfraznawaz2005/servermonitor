@@ -32,6 +32,10 @@ class ServiceProvider extends BaseServiceProvider
             $this->publishes([
                 __DIR__ . '/Views' => base_path('resources/views/vendor/servermonitor'),
             ], 'servermonitor.views');
+
+            $this->publishes([
+                __DIR__ . '/Assets' => public_path('vendor/servermonitor/assets'),
+            ], 'public');
         }
 
         // Register middleware

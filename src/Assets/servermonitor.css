@@ -1,0 +1,31 @@
+body, .card-body {
+    background: #555 url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23232324' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.card-body {
+    padding: 0.50rem;
+}
+
+.table td {
+    vertical-align: middle;
+    background: #fff;
+}
+
+.table thead {
+    background: #ddd;
+}
+
+.card {
+    border: none;
+}
+
+.card-header {
+    padding: .40rem 1.25rem;
+    line-height: 250%;
+}
+
+.stripe {
+    color: white;
+    background: repeating-linear-gradient(45deg, #007BFF, #007BFF 20%, #3898ff 10px, #3898ff);
+    background-size: 100% 20px;
+}

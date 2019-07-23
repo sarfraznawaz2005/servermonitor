@@ -12,7 +12,7 @@
 
     @if (isset($checkResults['counts']))
         <div class="mx-auto"
-             style="width: 70%; font-size: 16px; background: #eee; padding: 8px; margin-top: 15px; line-height: 100%;">
+             style="width: 65%; font-size: 16px; background: #eee; padding: 8px; margin-top: 15px; line-height: 100%;">
             <div class="float-left">
                 <span class="badge-success badge">
                 Passed: {{$checkResults['counts']['passed_checks_count']}}
@@ -36,7 +36,7 @@
     <div class="table-responsive-sm">
         <table class="table table-hover table-bordered table-sm mx-auto"
                cellspacing="0"
-               style="font-size: 14px; color: #555; width: 70%;">
+               style="font-size: 14px; color: #555; width: 65%;">
             <thead>
             <tr>
                 <th style="text-align: center;" width="40">#</th>
@@ -69,7 +69,7 @@
                         ?>
                         <td style="text-align: center;">
                         <span
-                            class="btn btn-primary btn-sm refresh"
+                            class="btn btn-info btn-sm refresh"
                             data-checker="{{$check['checker']}}"
                             data-toggle="tooltip"
                             data-placement="top"
@@ -84,50 +84,4 @@
             </tbody>
         </table>
     </div>
-
 @endsection
-
-@push('scripts')
-    <script>
-
-        $('[data-toggle="popover"]').popover({
-            html: true,
-            placement: 'top',
-            trigger: 'hover'
-        });
-
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // refresh all checks
-        $('#btnRefresh').click(function () {
-            $('body').loading({
-                message: 'Running, please wait...',
-                stoppable: false
-            });
-
-            $.get('{{route('servermonitor_refresh_all')}}', function () {
-                window.location.reload();
-            });
-        });
-
-        // refresh single check
-        $('.refresh').click(function () {
-            $('body').loading({
-                message: 'Running, please wait...',
-                stoppable: false
-            });
-
-            $.get('{{route('servermonitor_refresh')}}', {check: $(this).data('checker')}, function (result) {
-                $('body').loading('stop');
-
-                if (result.status) {
-                    swal("Passed", "Check Passed Successfully!", "success");
-                }
-                else {
-                    swal("Failed", result.error, "error");
-                }
-            });
-        });
-
-    </script>
-@endpush

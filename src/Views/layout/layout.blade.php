@@ -7,47 +7,10 @@
 
     <title>ServerMonitor</title>
 
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-          crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-easy-loading@1.3.0/dist/jquery.loading.css">
-
-    <style>
-        body, .card-body {
-            background: #555 url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23232324' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .card-body {
-            padding: 0.50rem;
-        }
-
-        .table td {
-            vertical-align: middle;
-            background: #fff;
-        }
-
-        .table thead {
-            background: #ddd;
-        }
-
-        .card {
-            border: none;
-        }
-
-        .card-header {
-            padding: .40rem 1.25rem;
-            line-height: 250%;
-        }
-
-        .stripe {
-            color: white;
-            background: repeating-linear-gradient(45deg, #007BFF, #007BFF 20%, #3898ff 10px, #3898ff);
-            background-size: 100% 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('vendor/servermonitor/assets/bootstrap/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/servermonitor/assets/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/servermonitor/assets/loading/jquery.loading.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/servermonitor/assets/servermonitor.css') }}">
 </head>
 
 <body>
@@ -57,7 +20,7 @@
     <div class="card ">
         <div class="card-header bg-primary text-white stripe">
             <strong style="font-size: 16px;">
-                <i class="fa fa-server"></i> @yield('title')
+                <i class="fa fa-arrow-circle-o-up"></i> @yield('title')
             </strong>
 
             <div class="float-right">
@@ -73,26 +36,18 @@
     </div>
 </main>
 
-<script
-        src="https://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-        crossorigin="anonymous">
-</script>
-<script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-        crossorigin="anonymous">
-</script>
-<script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-        crossorigin="anonymous">
+<script src="{{ asset('vendor/servermonitor/assets/jquery-3.4.1.min.js') }}"></script>
+<script src="{{ asset('vendor/servermonitor/assets/bootstrap/popper.min.js') }}"></script>
+<script src="{{ asset('vendor/servermonitor/assets/bootstrap/bootstrap.min.js') }}"></script>
+<script src="{{ asset('vendor/servermonitor/assets/sweetalert.min.js') }}"></script>
+<script src="{{ asset('vendor/servermonitor/assets/loading/jquery.loading.min.js') }}"></script>
+
+<script>
+    window.refreshUrl = "{{route('servermonitor_refresh')}}";
+    window.refreshAllUrl = "{{route('servermonitor_refresh_all')}}";
 </script>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-easy-loading@1.3.0/dist/jquery.loading.min.js"></script>
-
-@stack('scripts')
+<script src="{{ asset('vendor/servermonitor/assets/servermonitor.js') }}"></script>
 
 </body>
 </html>
