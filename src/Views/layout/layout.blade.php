@@ -46,8 +46,8 @@
 <script src="{{ asset('vendor/servermonitor/assets/loading/jquery.loading.min.js') }}"></script>
 
 <script>
-    window.refreshUrl = "{{route('servermonitor_refresh')}}";
-    window.refreshAllUrl = "{{route('servermonitor_refresh_all')}}";
+    window.ServerMonitorRefreshUrl = "{{route('servermonitor_refresh')}}";
+    window.ServerMonitorRefreshAllUrl = "{{route('servermonitor_refresh_all')}}";
 </script>
 
 <script src="{{ asset('vendor/servermonitor/assets/servermonitor.js') }}"></script>

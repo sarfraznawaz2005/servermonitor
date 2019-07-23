@@ -14,7 +14,7 @@ $('#btnRefresh').click(function () {
         stoppable: false
     });
 
-    $.get(window.refreshAllUrl, function () {
+    $.get(window.ServerMonitorRefreshAllUrl, function () {
         window.location.reload();
     });
 });
@@ -27,7 +27,7 @@ $('.refresh').click(function () {
         stoppable: false
     });
 
-    $.get(window.refreshUrl, {check: $(this).data('checker')}, function (result) {
+    $.get(window.ServerMonitorRefreshUrl, {check: $(this).data('checker')}, function (result) {
         $('body').loading('stop');
 
         if (result.status) {
