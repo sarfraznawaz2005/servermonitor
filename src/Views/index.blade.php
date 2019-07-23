@@ -4,7 +4,11 @@
 
 @section('header')
     <button type="submit" id="btnRefresh" class="btn btn-light btn-block">
-        <i class="fa fa-play"></i> Run All Checks
+        <img style="padding-bottom: 1px;"
+             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAAA8UlEQVQ4jaXUPUoEQRCG4acXEZFFREQ8ieEGBkYGnsDYM3gFEQNDIwPBwEDZTDAw8wCiBhqaLAbiLy5qmUzLuuzPzFhFUdBdvNTXRVcKIUmzWMBtiG8VrVHkJRxgI0lzVSFCwCoCzzjDCqZDOe+H5HjHHlpo1IUEvnCHTSzWheT4wDXWMT+oszKQXoknRe1kXUiOe2z3SswjLmufeCpAb/lwogLgEYfYD3Hx56aEnFecYxkzg6YzqpMuLrGD4xAvwwqHQR6wi6MQV+N09kM6OMUWbkJ0xwHw+yYttLGGqbJ/JnsqVkETTXTqrIJUdPIv+wFT0tX7APfQwQAAAABJRU5ErkJggg=="
+             alt="Refresh">
+
+        Run All Checks
     </button>
 @endsection
 
@@ -61,7 +65,7 @@
                         <td style="text-align: center;">{{$check['time']}}</td>
                         <?php
                         $isOk = $check['status'] == 1;
-                        $text = $isOk ? 'Passed':'Failed';
+                        $text = $isOk ? 'Passed' : 'Failed';
                         $icon = $isOk ? 'success' : 'danger';
                         $popover = $isOk ? '' : 'tabindex="0" data-toggle="popover" data-trigger="focus" title="Error Details" data-content="' . $check['error'] . '"';
 
@@ -69,13 +73,16 @@
                         ?>
                         <td style="text-align: center;">
                         <span
-                            class="btn btn-info btn-sm refresh"
-                            data-checker="{{$check['checker']}}"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Run this check"
-                            style="font-size: 10px;">
-                            <i class="fa fa-play" style="font-size: 14px;"></i>
+                                class="btn btn-info btn-sm refresh"
+                                data-checker="{{$check['checker']}}"
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                title="Run this check"
+                                style="font-size: 10px;">
+
+                                <img style="padding-left: 5px;"
+                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAA/ElEQVQokZ2SvUoDURSEZ5YgIqksrHwAK2tLH0Cs8gi+jIid1uIPWKfNA9hoYWevINoIQhDRMJ9FdsOy7K7RORwOXM7HcOdeIyS0Dgxd+FF/UFHOHUmXhD2hlaVphIARc70D4yTbSVZRfwmhJKMkVA08JTkCNpeCaSjJN3ALHCQZAkUrDIxKRzrmOMk+MOiEu7rUa5JDYKOCB1VwtvtynQFvth+AqTXfHfQRpT4knUi6lnVfgQsYaHOeAhPbx8CdC381FxbOQP38xva57QtZn3W3Vth2JD1LupJ0Cry48Kz3QmXau0nOkmz99qvq5fK91iQVsqa9Tg3N4X/qByQpP53UQDGqAAAAAElFTkSuQmCC"
+                                     alt="Refresh">
                         </span>
                         </td>
                     </tr>
@@ -84,4 +91,5 @@
             </tbody>
         </table>
     </div>
+
 @endsection
