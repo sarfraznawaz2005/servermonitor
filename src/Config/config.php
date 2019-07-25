@@ -142,9 +142,6 @@ return [
                 ],
 
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\CorrectEnvValues::class => [
-
-                ],
 
                 /*
                 // requires "sensiolabs/security-checker" package.
