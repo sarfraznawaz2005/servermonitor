@@ -108,13 +108,13 @@ return [
             ],
             */
 
-           /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\HttpStatusCode::class => [
-                'sites' => [
-                    'google' => ['url' => 'http://google.com', 'expected_code' => 200],
-                ]
-            ],
-            */
+            /*
+             \Sarfraznawaz2005\ServerMonitor\Checks\Server\HttpStatusCode::class => [
+                 'sites' => [
+                     'google' => ['url' => 'http://google.com', 'expected_code' => 200],
+                 ]
+             ],
+             */
 
         ],
 
@@ -141,12 +141,15 @@ return [
                     'binary_path' => 'composer'
                 ],
 
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\CorrectEnvValues::class => [
+
+                ],
+
                 /*
                 // requires "sensiolabs/security-checker" package.
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerPackagesSecurity::class,
                 */
-
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
 
                 /*
                 // requires "Predis\Client" package.
