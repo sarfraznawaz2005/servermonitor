@@ -8,13 +8,11 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
 class CheckPhpIniValues implements Check
 {
-    private $values;
+    private $values = [];
 
     /**
      * Perform the actual verification of this check.
@@ -26,17 +24,17 @@ class CheckPhpIniValues implements Check
     {
         $values = parse_ini_file(php_ini_loaded_file());
 
-        $this->values = Collection::make(Arr::get($config, 'checks', []));
-
-        $this->values = $this->values->reject(static function ($value, $key) use ($values) {
-            if (!isset($values[$key])) {
-                return false;
+        if (!empty($config['checks']) && is_array($config['checks'])) {
+            foreach ($config['checks'] as $key => $value) {
+                if (isset($values[$key])) {
+                    if ($value != $values[$key]) {
+                        $this->values[$key] = $values[$key];
+                    }
+                }
             }
+        }
 
-            return $value === $values[$key];
-        });
-
-        return $this->values->isEmpty();
+        return collect($this->values)->isEmpty();
     }
 
     /**
@@ -46,6 +44,6 @@ class CheckPhpIniValues implements Check
      */
     public function message(): string
     {
-        return "The following values don't match:\n" . $this->values->keys()->implode(PHP_EOL);
+        return "The following values don't match:\n" . collect($this->values)->keys()->implode(PHP_EOL);
     }
 }
