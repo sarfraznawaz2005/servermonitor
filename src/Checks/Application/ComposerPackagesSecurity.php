@@ -49,10 +49,12 @@ class ComposerPackagesSecurity implements Check
      */
     public function message(): string
     {
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
         if ($this->error) {
             return $this->error;
         }
 
-        return "The following packages have vulnerabilities referenced\n in the SensioLabs security advisories database:\n" . collect($this->problems)->keys()->implode(PHP_EOL);
+        return "The following packages have vulnerabilities referenced\n in the SensioLabs security advisories database:\n" . collect($this->problems)->keys()->implode($NL);
     }
 }

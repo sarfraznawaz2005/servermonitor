@@ -48,6 +48,8 @@ class SftpConnectionWorks implements Check
      */
     public function message(): string
     {
-        return "SFTP connection failed for servers:\n" . $this->servers->keys()->implode(PHP_EOL);
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
+        return "SFTP connection failed for servers:$NL" . $this->servers->keys()->implode($NL);
     }
 }

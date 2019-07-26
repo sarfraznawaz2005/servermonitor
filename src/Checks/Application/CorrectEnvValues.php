@@ -22,6 +22,8 @@ class CorrectEnvValues implements Check
      */
     public function check(array $config): bool
     {
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
         $checks = $config['checks'];
 
         foreach ($checks as $type => $check) {
@@ -35,7 +37,7 @@ class CorrectEnvValues implements Check
                     $actualValue = $this->getValueByKey($valueKey, $actualValues);
 
                     if ($value !== $actualValue) {
-                        $this->errors .= "$type : $valueKey" . PHP_EOL;
+                        $this->errors .= "$type : $valueKey" . $NL;
                     }
                 }
             }
@@ -51,7 +53,9 @@ class CorrectEnvValues implements Check
      */
     public function message(): string
     {
-        return "The following values don't match:\n" . $this->errors;
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
+        return "The following values don't match:$NL" . $this->errors;
     }
 
     protected function getValueByKey($key, array $data, $default = null)

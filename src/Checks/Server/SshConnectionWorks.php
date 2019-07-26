@@ -80,10 +80,12 @@ class SshConnectionWorks implements Check
      */
     public function message(): string
     {
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
         if ($this->error) {
             return $this->error;
         }
 
-        return "SSH connection failed for servers:\n" . $this->servers->keys()->implode(PHP_EOL);
+        return "SSH connection failed for servers:$NL" . $this->servers->keys()->implode($NL);
     }
 }

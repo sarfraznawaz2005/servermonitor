@@ -88,11 +88,13 @@ class SupervisorProgramsAreRunning implements Check
      */
     public function message(): string
     {
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
         if ($this->error) {
             return $this->error;
         }
 
-        return "The following programs are not running or require a restart:\n" . $this->notRunningPrograms->implode(PHP_EOL);
+        return "The following programs are not running or require a restart:$NL" . $this->notRunningPrograms->implode($NL);
     }
 
     /**

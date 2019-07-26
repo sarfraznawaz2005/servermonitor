@@ -54,6 +54,8 @@ class ServersArePingable implements Check
      */
     public function message(): string
     {
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
         return $this->servers->map(static function ($server) {
 
             $host = $server['host'];
@@ -61,6 +63,6 @@ class ServersArePingable implements Check
             $timeout = $server['timeout'];
 
             return "Server $host:$port is not reachable (timeout {$timeout}s).";
-        })->implode(PHP_EOL);
+        })->implode($NL);
     }
 }

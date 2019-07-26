@@ -44,6 +44,8 @@ class CheckPhpIniValues implements Check
      */
     public function message(): string
     {
-        return "The following values don't match:\n" . collect($this->values)->keys()->implode(PHP_EOL);
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
+        return "The following values don't match:$NL" . collect($this->values)->keys()->implode($NL);
     }
 }

@@ -51,6 +51,8 @@ class DirectoriesHaveCorrectPermissions implements Check
      */
     public function message(): string
     {
-        return "The following directories are not writable:\n" . $this->paths->implode(PHP_EOL);
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
+        return "The following directories are not writable:$NL" . $this->paths->implode($NL);
     }
 }

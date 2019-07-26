@@ -49,6 +49,8 @@ class FtpConnectionWorks implements Check
      */
     public function message(): string
     {
-        return "FTP connection failed for servers:\n" . $this->servers->keys()->implode(PHP_EOL);
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
+        return "FTP connection failed for servers:$NL" . $this->servers->keys()->implode($NL);
     }
 }

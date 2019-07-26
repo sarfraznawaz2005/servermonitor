@@ -40,6 +40,8 @@ class UnwantedPhpExtensionsAreDisabled implements Check
      */
     public function message(): string
     {
-        return "The following extensions are not disabled:\n" . $this->extensions->implode(PHP_EOL);
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
+        return "The following extensions are not disabled:$NL" . $this->extensions->implode($NL);
     }
 }

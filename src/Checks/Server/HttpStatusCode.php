@@ -50,6 +50,8 @@ class HttpStatusCode implements Check
      */
     public function message(): string
     {
-        return "Intended HTTP status code failed for :\n" . $this->sites->keys()->implode(PHP_EOL);
+        $NL = app()->runningInConsole() ? "\n" : '<br>';
+
+        return "Intended HTTP status code failed for :$NL" . $this->sites->keys()->implode($NL);
     }
 }
