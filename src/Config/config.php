@@ -144,6 +144,29 @@ return [
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\StorageDirectoryIsLinked::class,
 
                 /*
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\CorrectEnvValues::class => [
+                    'checks' => [
+                        'local' => [
+                            'path' => config_path('app.php'),
+                            'expected_values' => [
+                                'env' => 'local',
+                                'debug' => true,
+                                'url' => 'http://localhost',
+                            ]
+                        ],
+                        'production' => [
+                            'path' => config_path('app.php'),
+                            'expected_values' => [
+                                'env' => 'production',
+                                'debug' => false,
+                                'url' => 'http://mysite.com',
+                            ]
+                        ],
+                    ]
+                ],
+                */
+
+                /*
                 // requires "sensiolabs/security-checker" package.
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerPackagesSecurity::class,
                 */

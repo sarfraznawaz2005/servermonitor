@@ -8,8 +8,6 @@
 
 namespace Sarfraznawaz2005\ServerMonitor\Checks\Application;
 
-use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
 class CorrectEnvValues implements Check
@@ -35,7 +33,7 @@ class CorrectEnvValues implements Check
 
                 if ($actualValues && is_array($actualValues)) {
                     if ($value !== $actualValues[$valueKey]) {
-                        $this->errors .= "$type:$valueKey: '$value' <> '$actualValues[$valueKey]'" . PHP_EOL;
+                        $this->errors .= "$type : $valueKey" . PHP_EOL;
                     }
                 }
             }
