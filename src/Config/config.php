@@ -167,6 +167,17 @@ return [
                 */
 
                 /*
+                \Sarfraznawaz2005\ServerMonitor\Checks\Application\CheckPhpIniValues::class => [
+                    'checks' => [
+                        'max_execution_time' => '36000',
+                        'memory_limit' => '512M',
+                        'display_errors' => '1',
+                        'error_reporting' => '32767',
+                    ]
+                ],
+                */
+
+                /*
                 // requires "sensiolabs/security-checker" package.
                 \Sarfraznawaz2005\ServerMonitor\Checks\Application\ComposerPackagesSecurity::class,
                 */
