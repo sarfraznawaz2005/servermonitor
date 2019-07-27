@@ -227,6 +227,9 @@ class MyCheck implements Check
 }
 ````
 
+## Issues
+
+Please let's know if you notice any issues, we recommend PRs for existing or new checks.
 
 ## Credits
 
