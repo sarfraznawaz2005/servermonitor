@@ -231,6 +231,10 @@ class MyCheck implements Check
 
 Please let's know if you notice any issues, we recommend PRs for existing or new checks.
 
+## No Tests ?
+
+We welcome PRs for test cases.
+
 ## Credits
 
 - [Sarfraz Ahmed][link-author]
