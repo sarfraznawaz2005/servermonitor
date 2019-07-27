@@ -58,6 +58,23 @@ return [
             ],
 
             /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\ProcessRunning::class => [
+                'processes' => ['apache', 'mysql']
+            ],
+            */
+
+            /*
+            \Sarfraznawaz2005\ServerMonitor\Checks\Server\CheckPhpIniValues::class => [
+                'checks' => [
+                    'max_execution_time' => '36000',
+                    'memory_limit' => '512M',
+                    'display_errors' => '1',
+                    'error_reporting' => '32767',
+                ]
+            ],
+            */
+
+            /*
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\FtpConnectionWorks::class => [
                 'servers' => [
                     'myserver' => [
@@ -162,17 +179,6 @@ return [
                                 'url' => 'http://mysite.com',
                             ]
                         ],
-                    ]
-                ],
-                */
-
-                /*
-                \Sarfraznawaz2005\ServerMonitor\Checks\Application\CheckPhpIniValues::class => [
-                    'checks' => [
-                        'max_execution_time' => '36000',
-                        'memory_limit' => '512M',
-                        'display_errors' => '1',
-                        'error_reporting' => '32767',
                     ]
                 ],
                 */
