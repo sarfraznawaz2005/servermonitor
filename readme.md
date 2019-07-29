@@ -51,7 +51,6 @@ The package comes with following checks out of the box. Checks can be divided in
  - :white_check_mark:  Are servers pingable
  - :white_check_mark:  Check HTTP Status Code
  - :white_check_mark:  Check php.ini file values
- - :white_check_mark:  Are certain processes running
 
 **Common Checks**
 

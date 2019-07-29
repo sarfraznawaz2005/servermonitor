@@ -58,12 +58,6 @@ return [
             ],
 
             /*
-            \Sarfraznawaz2005\ServerMonitor\Checks\Server\ProcessRunning::class => [
-                'processes' => ['apache', 'mysql']
-            ],
-            */
-
-            /*
             \Sarfraznawaz2005\ServerMonitor\Checks\Server\CheckPhpIniValues::class => [
                 'checks' => [
                     'max_execution_time' => '36000',
