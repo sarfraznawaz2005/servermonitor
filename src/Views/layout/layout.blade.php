@@ -18,11 +18,7 @@
 
     <div class="card ">
         <div class="card-header bg-primary text-white stripe">
-            <strong style="font-size: 16px;">
-                <img style="padding-bottom: 1px;"
-                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAARCAYAAAA7bUf6AAABG0lEQVQ4jc3ToW7UQRTF4e+QEYQgVlQQ0qCaGkwDphJWgiDBIhA8AuEJECgUug4PT9AggSB4gBWkooI0yNqD+S+BZbdpWgTj5t7M79w5ZyZVl11XLk3AUDtt56uNJNpKAtq/J05yKBYD+0me4/060LS28DjJDN/xEg9xisWY1H60/bRp3CS3kjyYtqf4gtttRaTtfttn5zbgT/iB+DhwlOTdRSA4goE5XrX9cIbiDPdwHSd4g/s4wNtxHrllSqsJLY1P25vY2xDh2oPLWpKv4nhgG49+i3Ot2obaCY5H290ke3h9xnW2k7xoewPfkjzB07a7kc9jos7a3l1VXXqRZKvt1al/re2d6e388mQH8wt6cigW+W9+8T+B/ARUKnYRg45uggAAAABJRU5ErkJggg=="
-                     alt="ServerMonitor">
-
+            <strong class="h5">
                 @yield('title')
             </strong>
 
