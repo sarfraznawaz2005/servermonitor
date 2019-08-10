@@ -31,7 +31,7 @@ class MigrationsAreUpToDate implements Check
 
         $output = collect(explode("\n", $output));
         $output = $output->reject(function ($item) {
-            return !Str::contains($item, '| N    | ');
+            return !Str::contains($item, '| N');
         });
 
         $count = $output->count() !== 0;
