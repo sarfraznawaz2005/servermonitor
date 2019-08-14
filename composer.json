@@ -1,49 +1,52 @@
 {
-    "name": "sarfraznawaz2005/servermonitor",
-    "description": "Laravel package to periodically monitor the health of your server and website.",
-    "license": "MIT",
-    "type": "library",
-    "authors": [
-        {
-            "name": "Sarfraz Ahmed",
-            "email": "sarfraznawaz2005@gmail.com",
-            "homepage": "http://codeinphp.github.io"
-        }
-    ],
-    "homepage": "https://github.com/sarfraznawaz2005/servermonitor",
-    "keywords": [
-        "Laravel",
-        "server",
-        "monitor",
-        "health",
-        "status",
-        "check"
-    ],
-    "require": {
-        "php": "^7.0",
-        "illuminate/support": "~5",
-        "league/flysystem": "^1.0",
-        "nesbot/carbon": "^1.0",
-        "composer/semver": "^1.4",
-        "maknz/slack": "~1.7",
-        "geerlingguy/ping": "^1.1"
-    },
-    "autoload": {
-        "psr-4": {
-            "Sarfraznawaz2005\\ServerMonitor\\": "src/"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Sarfraznawaz2005\\ServerMonitor\\ServiceProvider"
-            ]
-        }
-    },
-    "minimum-stability": "stable",
-    "suggest": {
-        "sensiolabs/security-checker": "Needed for security check of composer packages.",
-        "Predis/Client": "Needed for Redis check",
-        "league/flysystem-sftp": "Needed for SFTP check"
+  "name": "sarfraznawaz2005/servermonitor",
+  "description": "Laravel package to periodically monitor the health of your server and website.",
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Sarfraz Ahmed",
+      "email": "sarfraznawaz2005@gmail.com",
+      "homepage": "http://codeinphp.github.io"
     }
+  ],
+  "homepage": "https://github.com/sarfraznawaz2005/servermonitor",
+  "keywords": [
+    "Laravel",
+    "server",
+    "monitor",
+    "health",
+    "status",
+    "check"
+  ],
+  "require": {
+    "php": "^7.0",
+    "illuminate/support": "~5",
+    "league/flysystem": "^1.0",
+    "nesbot/carbon": "^1.0",
+    "composer/semver": "^1.4",
+    "maknz/slack": "~1.7",
+    "geerlingguy/ping": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sarfraznawaz2005\\ServerMonitor\\": "src/"
+    },
+    "files": [
+      "src/Helpers/helper.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Sarfraznawaz2005\\ServerMonitor\\ServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable",
+  "suggest": {
+    "sensiolabs/security-checker": "Needed for security check of composer packages.",
+    "Predis/Client": "Needed for Redis check",
+    "league/flysystem-sftp": "Needed for SFTP check"
+  }
 }

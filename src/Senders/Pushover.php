@@ -10,7 +10,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Senders;
 
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class Pushover extends BaseSender implements Sender
+class Pushover implements Sender
 {
     /**
      * Sends notificatin/alert message.
@@ -18,6 +18,7 @@ class Pushover extends BaseSender implements Sender
      * @param Check $check
      * @param array $config
      * @return mixed
+     * @throws \ReflectionException
      */
     public function send(Check $check, array $config)
     {
@@ -26,7 +27,7 @@ class Pushover extends BaseSender implements Sender
         $userKey = $config['notification_pushover_user_key'] ?? config('server-monitor.notifications.notification_pushover_user_key');
         $sound = $config['notification_pushover_sound'] ?? config('server-monitor.notifications.notification_pushover_sound');
 
-        $name = $this->getName($check, $config);
+        $name = getCheckerName($check, $config);
         $error = $check->message();
 
         $body = "$title : $name ($error)";

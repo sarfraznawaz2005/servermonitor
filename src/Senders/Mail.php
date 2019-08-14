@@ -11,7 +11,7 @@ namespace Sarfraznawaz2005\ServerMonitor\Senders;
 use Illuminate\Mail\Message;
 use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
-class Mail extends BaseSender implements Sender
+class Mail implements Sender
 {
     /**
      * Sends notificatin/alert message.
@@ -19,13 +19,14 @@ class Mail extends BaseSender implements Sender
      * @param Check $check
      * @param array $config
      * @return mixed
+     * @throws \ReflectionException
      */
     public function send(Check $check, array $config)
     {
         $subject = $config['notification_title'] ?? config('server-monitor.notifications.notification_title');
         $from = ($config['notification_mail_from'] ?? config('server-monitor.notifications.notification_mail_from')) ?? null;
 
-        $name = $this->getName($check, $config);
+        $name = getCheckerName($check, $config);
         $error = $check->message();
 
         $body = "<strong>$name</strong><br><br>$error";

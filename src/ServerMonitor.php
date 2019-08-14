@@ -52,6 +52,7 @@ class ServerMonitor
      * Runs all checks and returns results.
      *
      * @return array
+     * @throws \ReflectionException
      */
     public function runChecks(): array
     {
@@ -92,8 +93,8 @@ class ServerMonitor
 
                     $results[] = [
                         'type' => $type,
-                        'checker' => $this->getClassName($check),
-                        'name' => $config['name'] ?? $this->normalizeName($this->getClassName($check)),
+                        'checker' => getCheckerClassName($check),
+                        'name' => getCheckerName($check, $config),
                         'status' => $status,
                         'error' => $error,
                         'time' => sprintf("%dms", $eTime),
@@ -120,6 +121,7 @@ class ServerMonitor
      *
      * @param $checkClass
      * @return array
+     * @throws \ReflectionException
      */
     public function runCheck($checkClass): array
     {
@@ -134,7 +136,7 @@ class ServerMonitor
                         $config = [];
                     }
 
-                    if ($checkClass === $this->getClassName($check)) {
+                    if ($checkClass === getCheckerClassName($check)) {
                         $sTime = microtime(true);
                         $object = app()->make($check);
                         $status = $object->check($config);
@@ -144,7 +146,7 @@ class ServerMonitor
                         return [
                             'type' => $type,
                             'checker' => $check,
-                            'name' => $config['name'] ?? $this->normalizeName($this->getClassName($check)),
+                            'name' => getCheckerName($check, $config),
                             'status' => $status,
                             'error' => $error,
                             'time' => sprintf("%dms", $eTime),
@@ -183,29 +185,5 @@ class ServerMonitor
         }
 
         return Carbon::parse(date('F d Y H:i:s.', filemtime($this->cacheFile)))->diffForHumans();
-    }
-
-    /**
-     * Returns class name from FQN
-     *
-     * @param $namespace
-     * @return mixed
-     */
-    public function getClassName($namespace)
-    {
-        $path = explode('\\', $namespace);
-
-        return array_pop($path);
-    }
-
-    /**
-     * Converts "PascalCase" to "Pascal Case"
-     *
-     * @param $name
-     * @return string
-     */
-    protected function normalizeName($name): string
-    {
-        return ucwords(strtolower(preg_replace('/(?<!^)[A-Z]/', ' $0', $name)));
     }
 }
