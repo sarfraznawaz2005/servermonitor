@@ -31,7 +31,7 @@ class Mail implements Sender
 
         $body = "<strong>$name</strong><br><br>$error";
 
-        $emails = config('server-monitor.notifications.notification_notify_emails');
+        $emails = $config['notification_notify_emails'] ?? config('server-monitor.notifications.notification_notify_emails');
 
         try {
             if ($emails) {
