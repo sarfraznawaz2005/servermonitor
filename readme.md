@@ -142,6 +142,18 @@ dump($checkResults);
 
 You can also run check(s) programmatically (`$sm->runChecks()`), see available methods in file: `vendor/Sarfraznawaz2005/ServerMonitor/src/ServerMonitor.php`
 
+**Running Checks for Web Only**
+
+If for some reasons, you want to run some checks manually and via Web Interface only, you can specify `web_only` option for such checks like this:
+
+````php
+\Sarfraznawaz2005\ServerMonitor\Checks\Server\RequiredPhpExtensionsAreInstalled::class => [
+    'web_only' => true
+],
+````
+
+Now above check will not be run via console when `servermonitor:check` is run. However this check will be performed when you run all checks via Web Interface.
+
 # Customization
 
 See `config/server-monitor.php` file for all checks. Note that some checks are commented intentionally, you can un-comment them if you need to use them.

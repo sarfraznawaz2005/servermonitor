@@ -28,12 +28,12 @@
                 </span>
             </div>
             <div class="float-right">
-                <span class="badge-light badge">Last Checked: {{$lastRun}}</span>
+                <span class="badge-light badge">Last Checked: {{$lastRun}} via {{$checkResults['via']}}</span>
             </div>
             <div class="clearfix"></div>
         </div>
 
-        <?php unset($checkResults['counts']) ?>
+        <?php unset($checkResults['counts'], $checkResults['via']) ?>
     @endif
 
     <div class="table-responsive-sm">

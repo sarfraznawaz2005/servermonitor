@@ -60,17 +60,25 @@ class ServerMonitor
 
         $checksAll = $this->getCheckClasses();
 
+        $isConsole = app()->runningInConsole();
+        $via = $isConsole ? 'Console' : 'Web Interface';
+
         $totalChecksCount = 0;
         $passedChecksCount = 0;
         foreach ($checksAll as $type => $checks) {
             if ($checks) {
                 foreach ($checks as $check => $config) {
-                    $totalChecksCount++;
 
                     if (!is_array($config)) {
                         $check = $config;
                         $config = [];
                     }
+
+                    if ($isConsole && isset($config['web_only'])) {
+                        continue;
+                    }
+
+                    $totalChecksCount++;
 
                     $sTime = microtime(true);
                     $object = app()->make($check);
@@ -110,6 +118,8 @@ class ServerMonitor
             'passed_checks_count' => $passedChecksCount,
             'failed_checks_count' => $totalChecksCount - $passedChecksCount,
         ];
+
+        $results['via'] = $via;
 
         @file_put_contents($this->cacheFile, serialize($results));
 

@@ -25,10 +25,11 @@ abstract class BaseCommand extends Command
         $this->info(
             '<fg=green>Passed: ' . $results['counts']['passed_checks_count'] . "</fg=green>\t" .
             '<fg=red>Failed: ' . $results['counts']['failed_checks_count'] . "</fg=red>\t" .
-            '<fg=yellow>Total: ' . $results['counts']['total_checks_count'] . '</fg=yellow>'
+            '<fg=yellow>Total: ' . $results['counts']['total_checks_count'] . "</fg=yellow>\t" .
+            '<fg=white>Last Run Via: ' . $results['via'] . '</fg=white>'
         );
 
-        unset($results['counts']);
+        unset($results['counts'], $results['via']);
 
         foreach ($results as $type => $checks) {
 
