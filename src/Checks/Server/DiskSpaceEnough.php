@@ -12,7 +12,6 @@ use Sarfraznawaz2005\ServerMonitor\Checks\Check;
 
 class DiskSpaceEnough implements Check
 {
-    private $error;
     private $percent;
 
     /**
@@ -41,10 +40,6 @@ class DiskSpaceEnough implements Check
      */
     public function message(): string
     {
-        if ($this->error) {
-            return $this->error;
-        }
-
         return 'Disk Space usage at: ' . $this->percent . '%';
     }
 }
