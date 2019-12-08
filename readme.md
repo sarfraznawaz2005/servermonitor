@@ -45,6 +45,7 @@ The package comes with following checks out of the box. Checks can be divided in
 
  - :white_check_mark:  Required PHP extensions are installed
  - :white_check_mark:  Disk Space Enough
+ - :white_check_mark:  Average CPU Usage
  - :white_check_mark:  FTP Connection Works
  - :white_check_mark:  SFTP Connection Works
  - :white_check_mark:  SSL Certificate Valid

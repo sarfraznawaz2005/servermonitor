@@ -105,7 +105,7 @@ class ServerMonitor
                         'name' => getCheckerName($check, $config),
                         'status' => $status,
                         'error' => $error,
-                        'time' => sprintf("%dms", $eTime),
+                        'time' => sprintf('%dms', $eTime),
                     ];
                 }
             }
@@ -159,7 +159,7 @@ class ServerMonitor
                             'name' => getCheckerName($check, $config),
                             'status' => $status,
                             'error' => $error,
-                            'time' => sprintf("%dms", $eTime),
+                            'time' => sprintf('%dms', $eTime),
                         ];
                     }
                 }
