@@ -20,7 +20,9 @@ class ServerMonitorController extends BaseController
         }
 
         if (!config('server-monitor.web_interface_enabled')) {
-            abort(404);
+			if (!app()->runningInConsole()) {
+				abort(404);
+			}
         }
 
         $this->serverMonitor = $serverMonitor;
