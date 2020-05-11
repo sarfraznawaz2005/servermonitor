@@ -21,7 +21,7 @@
   ],
   "require": {
     "php": "^7.0",
-    "illuminate/support": "~5|~6",
+    "illuminate/support": "~5|~6|~7",
     "league/flysystem": "^1.0",
     "nesbot/carbon": "^1.0|^2.0",
     "composer/semver": "^1.4",
