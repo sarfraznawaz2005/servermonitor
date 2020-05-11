@@ -25,7 +25,7 @@
     "league/flysystem": "^1.0",
     "nesbot/carbon": "^1.0|^2.0",
     "composer/semver": "^1.4",
-    "maknz/slack": "~1.7",
+    "alek13/slack": "~1.7",
     "geerlingguy/ping": "^1.1"
   },
   "autoload": {
