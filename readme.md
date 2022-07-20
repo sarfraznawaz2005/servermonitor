@@ -7,20 +7,13 @@ Laravel package to periodically monitor the health of your server and applicatio
 
 ## Requirements
 
- - PHP >= 7+
- - Laravel 5+
+ - PHP >= 8+
+ - Laravel 9
 
 ## Installation
 
 ``` bash
 $ composer require sarfraznawaz2005/servermonitor
-```
-
-Additional step for Laravel < 5.5:
-
-Add Service Provider to `config/app.php` in `providers` section
-```php
-Sarfraznawaz2005\ServerMonitor\ServiceProvider::class,
 ```
 
 ---
