@@ -23,7 +23,7 @@ class ComposerDependenciesUpToDate implements Check
         $binary = $config['binary_path'];
 
         chdir(base_path());
-        exec("$binary install --dry-run 2>&1", $output, $status);
+        exec("$binary install --dry-run --no-interaction 2>&1", $output, $status);
         $output = implode('-', $output);
 
         return strstr($output, 'Nothing to install');
