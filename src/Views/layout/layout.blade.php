@@ -44,7 +44,7 @@
 <script>
     window.ServerMonitorRefreshUrl = "{{route('servermonitor_refresh')}}";
     window.ServerMonitorRefreshAllUrl = "{{route('servermonitor_refresh_all')}}";
-    window.ServerMonitorDashboardRefreshInterval = {{ config('server-monitor.dashboard_refresh_interval')*1000 }};
+    window.ServerMonitorDashboardRefreshInterval = {{ (config('server-monitor.dashboard_refresh_interval') ?? 60)*1000 }};
 </script>
 
 <script src="{{ asset('vendor/servermonitor/assets/servermonitor.js') }}"></script>
