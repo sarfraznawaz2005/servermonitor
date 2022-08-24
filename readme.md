@@ -122,6 +122,10 @@ Other than commands, you can also use Web Interface to run new checks process fo
 
 If you would like to disable Web Interface, you can set `web_interface_enabled` to `false` and now hitting web interface route would result in 404.
 
+**Dashboard Refresh Interval**
+
+You can refresh the dashboard page by changing the `server-monitor.dashboard_refresh_interval` value in the `config/server-monitor.php` file.The value you give must be in seconds and if you don't have this config key(eg: old users), no worries, the default value will be 60 seconds.
+
 **Running/Getting Checks Programmatically**
 
 If you still would like to show status of various checks in your view in your own way, you can get status of all checks programmatically like so:
