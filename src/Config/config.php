@@ -25,6 +25,17 @@ return [
     'route' => 'servermonitor',
     'username' => 'servermonitor',
     'password' => 'servermonitor',
+    
+      /*
+    |--------------------------------------------------------------------------
+    | Dashboard Refresh Timeout Interval
+    |--------------------------------------------------------------------------
+    |
+    | You can refresh your status dashboard by setting this value.
+    | The value can be given in seconds.
+    |
+    */
+    'dashboard_refresh_interval' => env('DASHBOARD_REFRESH_INTERVAL', 60),
 
 
     /*
