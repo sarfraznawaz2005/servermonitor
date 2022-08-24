@@ -38,3 +38,7 @@ $('.refresh').click(function () {
         }
     });
 });
+
+setTimeout(function () {
+    $('#btnRefresh').trigger('click');
+}, window.ServerMonitorDashboardRefreshInterval);
