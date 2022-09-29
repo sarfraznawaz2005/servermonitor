@@ -43,12 +43,12 @@ class Mail implements Sender
                                 ->subject($subject)
                                 ->from($from)
                                 ->to($email)
-                                ->setBody($body, 'text/html');
+                                ->html($body);
                         } else {
                             $message
                                 ->subject($subject)
                                 ->to($email)
-                                ->setBody($body, 'text/html');
+                                ->html($body);
                         }
                     });
                 }
